@@ -1,0 +1,4 @@
+framework module BambuserPlayerSDK {
+  header "BambuserPlayerSDK-Swift.h"
+  requires objc
+}

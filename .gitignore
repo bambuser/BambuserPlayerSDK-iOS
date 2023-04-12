@@ -1,0 +1,17 @@
+.swiftpm/
+Pods/
+
+xcshareddata/
+
+.DS_Store
+*.DS_Store
+
+*.xcbkptlist
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+*.DS_Store
+*.pyc
