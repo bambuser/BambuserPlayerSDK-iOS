@@ -22,16 +22,17 @@ struct HomeScreen: View {
     @StateObject private var sheet = SheetContext()
     
     @State private var isModal = false
+    @State private var playerPresentedTroughNavigation = false
             
     var body: some View {
         NavigationView {
             List {
                 playerSection
-                SettingsListSection()
+                SettingsListSection(playerIsVisible: cover.isActive || sheet.isActive || playerPresentedTroughNavigation)
             }
             .navigationTitle("Demo")
             .listStyle(InsetGroupedListStyle())
-            .animation(.easeOut)
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(
             StackNavigationViewStyle())
@@ -83,6 +84,10 @@ private extension HomeScreen {
         )
         .onAppear {
             isModal = false
+            playerPresentedTroughNavigation = true
+        }
+        .onDisappear {
+            playerPresentedTroughNavigation = false
         }
     }
 }

@@ -49,6 +49,10 @@ class HomeNormalCell: UITableViewCell {
         iconImageView.tintColor = .label
         backgroundColor = .systemBackground
         accessoryType = item?.accessoryType ?? .none
+        
+        if let item {
+            accessibilityLabel = item.title
+        }
     }
     
     func setup() {

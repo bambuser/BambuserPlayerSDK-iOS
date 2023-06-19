@@ -57,8 +57,10 @@ class DemoSettings: ObservableObject {
     @Published var emojiButton = true
     @Published var cartButton = true
     @Published var chatVisibilityButton = true
+    @Published var chatInputField = true
     @Published var shareButton = true
     @Published var productsOnCurtain = true
+    @Published var showPDPOnProductTap = true
     @Published var productPlayButton = true
 
     // MARK: - Cancellables
@@ -102,8 +104,10 @@ private extension DemoSettings {
         emojiButton = configuration.uiConfig.emojiButton == .visible
         cartButton = configuration.uiConfig.cartButton == .visible
         chatVisibilityButton = configuration.uiConfig.chatVisibilityButton == .visible
+        chatInputField = configuration.uiConfig.chatInputField == .visible
         shareButton = configuration.uiConfig.shareButton == .visible
         productsOnCurtain = configuration.uiConfig.productsOnEndCurtain == .visible
+        showPDPOnProductTap = configuration.uiConfig.showPDPOnProductTap
         productPlayButton = configuration.uiConfig.productPlayButton == .visible
     }
     
@@ -122,8 +126,10 @@ private extension DemoSettings {
         addListener(value: $emojiButton, at: \.uiConfig.emojiButton)
         addListener(value: $cartButton, at: \.uiConfig.cartButton)
         addListener(value: $chatVisibilityButton, at: \.uiConfig.chatVisibilityButton)
+        addListener(value: $chatInputField, at: \.uiConfig.chatInputField)
         addListener(value: $shareButton, at: \.uiConfig.shareButton)
         addListener(value: $productsOnCurtain, at: \.uiConfig.productsOnEndCurtain)
+        addListener(value: $showPDPOnProductTap, at: \.uiConfig.showPDPOnProductTap)
         addListener(value: $productPlayButton, at: \.uiConfig.productPlayButton)
     }
 

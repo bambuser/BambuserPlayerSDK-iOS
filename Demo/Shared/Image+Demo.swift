@@ -36,9 +36,11 @@ extension Image {
     static let play = image("play.circle")
     static let pause = image("pause.circle")
     static let id = image("textformat.123")
+    static let textField = image("square.and.pencil")
     static let globe = image("globe")
     static let otherEnvironment = image("circle.dotted")
     static let automatic = image("arrow.triangle.2.circlepath")
+    static let timestamp = image("clock")
 }
 
 private extension Image {

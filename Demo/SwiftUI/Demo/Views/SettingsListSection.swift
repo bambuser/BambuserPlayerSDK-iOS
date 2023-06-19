@@ -18,6 +18,8 @@ struct SettingsListSection: View {
     @State var selectedEnvironment: SelectableEnvironment = .auto
     @State var otherEnvironmentName: String = ""
     
+    var playerIsVisible: Bool
+    
     var body: some View {
         Group {
             configurationSection
@@ -25,7 +27,6 @@ struct SettingsListSection: View {
             pipSection
             uiOverlaysSection
             actionBarSection
-            curtainsSection
             productsSection
         }
     }
@@ -40,32 +41,55 @@ struct SettingsListSection: View {
                 options: SelectableEnvironment.allCases.map { $0.rawValue },
                 selection: .init(
                     get: { selectedEnvironment.rawValue },
-                    set: { selectedEnvironment = .init(rawValue: $0) ?? .auto }
+                    set: { newValue in
+                        withAnimation {
+                            selectedEnvironment = .init(rawValue: newValue) ?? .auto
+                        }
+                    }
                 )
             )
-            .onChange(of: otherEnvironmentName) { settings.environment = selectedEnvironment.environment(otherName: $0) }
-            .onChange(of: selectedEnvironment) { settings.environment = $0.environment() }
+            .accessibilityLabel("Select current environment")
+            .onChange(of: otherEnvironmentName) {
+                settings.environment = selectedEnvironment.environment(otherName: $0)
+            }
+            .onChange(of: selectedEnvironment) {
+                settings.environment = $0.environment(otherName: otherEnvironmentName)
+            }
 
             if selectedEnvironment == .other {
                 text(.otherEnvironment, "Other environment name", $otherEnvironmentName)
                     .transition(.opacity)
             }
 
-            toggle(.automatic, "Auto switch to next show", $settings.automaticallyLoadNextShow)
+            toggle(.automatic, "Auto switch to next show", .init(get: {
+                settings.automaticallyLoadNextShow
+            }, set: { newVal in
+                withAnimation {
+                    settings.automaticallyLoadNextShow = newVal
+                }
+            }))
         }
     }
 
     var upcomingShowsSection: some View {
         Group {
-            if settings.automaticallyLoadNextShow {
+            // don't update this section if another screen is opened
+            if settings.automaticallyLoadNextShow && !playerIsVisible {
                 Section(header: Text("Upcoming shows")) {
                     ForEach(0..<settings.upcomingShows.count, id: \.self) { index in
-                        let text = settings.upcomingShows[index]
                         let iconName = "\(Int(index) + 1).circle.fill"
+                        let textSafe = Binding<String>(
+                            get: {
+                                settings.upcomingShows[safe: index] ?? ""
+                            },
+                            set: {
+                                settings.upcomingShows[safe: index] = $0
+                            }
+                        )
                         removableText(
                             Image(systemName: iconName),
                             "",
-                            $settings.upcomingShows[index],
+                            textSafe,
                             onRemove: { settings.upcomingShows.remove(at: index) })
                     }
 
@@ -87,9 +111,13 @@ struct SettingsListSection: View {
     var pipSection: some View {
         Section(header: Text("Picture-in-picture"), footer: Text("Picture-in-picture only works on real devices.")) {
             toggle(.pipEnter, "Enabled", $settings.isPiPEnabled)
+                .accessibilityLabel("Enable Picture in Picture mode")
             toggle(.pipExit, "Automatic", $settings.isPiPAutomatic)
+                .accessibilityLabel("Enable Picture in Picture autostart")
             toggle(.rectangle, "Hide UI", $settings.hideUiOnPip)
+                .accessibilityLabel("Hide all player UI controls")
             toggle(.pipRestore, "Restore automatically", $settings.shouldRestorePiPAutomatically)
+                .accessibilityLabel("Restore Picture in Picture automatically")
         }
     }
 
@@ -98,7 +126,7 @@ struct SettingsListSection: View {
             toggle(.ui, "All UI", $settings.allUI)
             toggle(.chat, "Show chat overlay", $settings.chatOverlay)
             toggle(.heart, "Show emoji overlay", $settings.emojiOverlay)
-            toggle(.product, "Show product list", $settings.productList)
+            toggle(.bag, "Show product list", $settings.productList)
         }
     }
 
@@ -108,19 +136,16 @@ struct SettingsListSection: View {
             toggle(.heart, "Show emoji button", $settings.emojiButton)
             toggle(.cart, "Show cart button", $settings.cartButton)
             toggle(.chat, "Show chat visibility button", $settings.chatVisibilityButton)
+            toggle(.textField, "Show chat input field", $settings.chatInputField)
             toggle(.share, "Show share button", $settings.shareButton)
         }
     }
 
-    var curtainsSection: some View {
-        Section(header: Text("Curtains")) {
-            toggle(.bag, "Show products on curtain", $settings.productsOnCurtain)
-        }
-    }
-    
     var productsSection: some View {
         Section(header: Text("Products")) {
-            toggle(.play, "Show product play button", $settings.productPlayButton)
+            toggle(.product, "Open PDP on product tap", $settings.showPDPOnProductTap)
+            toggle(.bag, "Show products on curtain", $settings.productsOnCurtain)
+            toggle(.timestamp, "Show product play button", $settings.productPlayButton)
         }
     }
 }
@@ -130,22 +155,25 @@ private extension SettingsListSection {
     func text(_ icon: Image, _ title: String, _ text: Binding<String>) -> some View {
         HStack {
             ListIcon(icon: icon)
+                .accessibilityHidden(true)
             VStack(spacing: 0) {
                 if !text.wrappedValue.isEmpty && !title.isEmpty {
                     Text(title)
                         .font(.system(size: 11, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .transition(.opacity.combined(with: .offset(y: 3)))
+                        .accessibilityHidden(true)
                 }
 
                 TextField(title, text: text)
+                    .accessibilityLabel(title)
             }
             .padding(.vertical, 1)
         }
         .animation(.easeOut(duration: 0.25), value: text.wrappedValue)
     }
 
-    func removableText(_ icon: Image, _ title: String, _ text: Binding<String>, onRemove: @escaping () -> ()) -> some View {
+    func removableText(_ icon: Image, _ title: String, _ text: Binding<String>, onRemove: @escaping () -> Void) -> some View {
         HStack {
             self.text(icon, title, text)
 
@@ -161,6 +189,14 @@ private extension SettingsListSection {
         HStack {
             ListIcon(icon: icon)
             Toggle(title, isOn: state)
+        }
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(title)
+        .accessibilityValue("\(state.wrappedValue ? 1 : 0)")
+        .accessibilityAddTraits(.isButton)
+        .onTapGesture {
+            state.wrappedValue = !state.wrappedValue
         }
     }
 
@@ -178,6 +214,6 @@ private extension SettingsListSection {
 
 struct ListSettingsSection_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsListSection()
+        SettingsListSection(playerIsVisible: false)
     }
 }

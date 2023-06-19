@@ -91,11 +91,14 @@ class PlayerViewController: BambuserPlayerViewController, DemoPlayerEventHandler
 
         if isMovingFromParent || isBeingDismissed {
             settings.loadNextShow()
+            onViewDidDisappear?()
         }
     }
     
     
     // MARK: - Properties
+    
+    var onViewDidDisappear: (() -> Void)?
     
     private var settings: DemoSettings
     private var pictureInPictureIsActive = false

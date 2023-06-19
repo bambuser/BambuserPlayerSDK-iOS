@@ -1,10 +1,10 @@
 platform :ios, '14.0'
 use_frameworks!
 
-project 'CocoapodsDemo/CocoapodsDemo.xcodeproj'
+project 'CocoapodsDemo.xcodeproj'
 
 def player_sdk_pods
-  pod 'BambuserPlayerSDK', :path => '../../'
+  pod 'BambuserPlayerSDK', '1.1.0'
 end
 
 target 'Demo-SwiftUI' do

@@ -20,10 +20,13 @@ struct DemoApp: App {
             HomeScreen()
                 .environmentObject(settings)
                 .onChange(of: scenePhase) { newPhase in
-                    if newPhase == .active {
-                        if settings.shouldRestorePiPAutomatically && PictureInPictureState.shared.isPictureInPictureActive {
-                            PictureInPictureState.shared.restorePlayer()
-                        }
+                    guard newPhase == .active else { return }
+
+                    let shouldRestorePip = settings.shouldRestorePiPAutomatically
+                    let pipIsActive = PictureInPictureState.shared.isPictureInPictureActive
+
+                    if shouldRestorePip && pipIsActive {
+                        PictureInPictureState.shared.restorePlayer()
                     }
                 }
         }

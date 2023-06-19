@@ -17,7 +17,6 @@ import BambuserPlayerSDK
  */
 class HomeViewController: UITableViewController {
     
-    
     // MARK: - Initialization
     
     init() {
@@ -34,12 +33,10 @@ class HomeViewController: UITableViewController {
         didSet { settings.environment = .other(name: otherEnvironmentName) }
     }
     
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadCells()
         
         title = "Demo"
@@ -51,7 +48,11 @@ class HomeViewController: UITableViewController {
         tableView.estimatedRowHeight = 60
         tableView.backgroundColor = .systemGray6
 
-        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActive),
+            name: UIApplication.didBecomeActiveNotification, object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,30 +69,12 @@ class HomeViewController: UITableViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-    func loadCells() {
-        let otherEnvCell: UITableViewCell? = selectedEnvironment == .other ? otherEnvironmentCell : nil
-
-        staticCells = [
-            [showPlayerCell, showPlayerAsSheetCell, fullScreenCoverCell],
-            [showIdCell, environmentCell, otherEnvCell].compactMap({ $0 }),
-            [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
-            [allUiCell, chatOverlayCell, emojiOverlayCell, productListCell],
-            [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, shareButtonCell],
-            [productsCurtainCell],
-            [productPlayCell]
-        ]
-
-        tableView.reloadData()
-    }
-    
     
     // MARK: - Properties
     
     var settings = DemoSettings()
     var staticCells: [[UITableViewCell]] = []
-    var headerTitles: [String] = ["Player", "Configuration", "Picture-In-Picture", "UI Overlays", "Action Bar", "Curtains", "Products"]
-    
+    var headerTitles: [String] = []
     
     // MARK: - Section 0
     
@@ -122,13 +105,15 @@ class HomeViewController: UITableViewController {
 
     // MARK: - Section 2
 
-    private lazy var showIdCell = HomeTextFieldCell(
-        item: HomeCellViewModel(
-            title: "Show ID",
-            image: .id,
-            value: settings.showId) { newValue in
-                self.settings.showId = newValue
-            })
+    private var showIdCell: HomeTextFieldCell {
+        HomeTextFieldCell(
+            item: HomeCellViewModel(
+                title: "Show ID",
+                image: .id,
+                value: settings.showId) { newValue in
+                    self.settings.showId = newValue
+                })
+    }
 
     private lazy var environmentCell = HomePickerCell(
         item: HomeCellViewModel(
@@ -149,6 +134,15 @@ class HomeViewController: UITableViewController {
                 self.otherEnvironmentName = $0
             })
 
+    private lazy var autoSwitchShowCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Auto switch to next show",
+            image: .pipEnter,
+            value: settings.automaticallyLoadNextShow) {
+                self.settings.automaticallyLoadNextShow = $0
+                self.loadCells()
+            })
+    
     // MARK: - Section 3
 
     private lazy var pipEnabledCell = HomeToggleCell(
@@ -251,6 +245,14 @@ class HomeViewController: UITableViewController {
             self.settings.chatVisibilityButton = $0
         })
 
+    private lazy var chatInputFieldCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Show chat input field",
+            image: .textField,
+            value: settings.chatInputField) {
+            self.settings.chatInputField = $0
+        })
+    
     private lazy var shareButtonCell = HomeToggleCell(
         item: HomeCellViewModel(
             title: "Show share button",
@@ -268,19 +270,35 @@ class HomeViewController: UITableViewController {
             value: settings.productsOnCurtain) {
             self.settings.productsOnCurtain = $0
         })
+}
+
+// MARK: - Load Cells
+
+extension HomeViewController {
+    func loadCells() {
+        updateHeaderTitles()
+
+        let otherEnvCell: UITableViewCell? = selectedEnvironment == .other ? otherEnvironmentCell : nil
     
-    // MARK: - Products
-    
-    private lazy var productPlayCell = HomeToggleCell(
-        item: HomeCellViewModel(
-            title: "Show product play button",
-            image: .play,
-            value: settings.productPlayButton) {
-            self.settings.productPlayButton = $0
-        })
-    
-    
-    // MARK: - UITableViewControllerDelegate
+        let upcomingShowsSection: [UITableViewCell]? = settings.automaticallyLoadNextShow ? upcomingCells() : nil
+                
+        staticCells = [
+            [showPlayerCell, showPlayerAsSheetCell, fullScreenCoverCell],
+            [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
+            upcomingShowsSection,
+            [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
+            [allUiCell, chatOverlayCell, emojiOverlayCell, productListCell],
+            [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
+            [productsCurtainCell]
+        ].compactMap({ $0 })
+
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UITableViewControllerDelegate
+
+extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -291,11 +309,35 @@ class HomeViewController: UITableViewController {
             default: break
             }
         }
+        
+        // Upcoming shows section. Click on '+' button
+        if settings.automaticallyLoadNextShow,
+           indexPath.section == 2,
+            settings.upcomingShows.count == indexPath.row {
+            if !settings.upcomingShows.contains(where: { $0.isEmpty }) {
+                settings.upcomingShows.append(String())
+                loadCells()
+            }
+        }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return settings.automaticallyLoadNextShow &&
+           indexPath.section == 2 &&
+           settings.upcomingShows.count > indexPath.row
+    }
     
-    // MARK: - UITableViewControllerDataSource
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            settings.upcomingShows.remove(at: indexPath.row)
+            loadCells()
+        }
+    }
+}
+
+// MARK: - UITableViewControllerDataSource
+
+extension HomeViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         staticCells.count
     }
@@ -313,13 +355,19 @@ class HomeViewController: UITableViewController {
     }
 }
 
-
 // MARK: - Private Functionality
 
 private extension HomeViewController {
     
     var playerController: PlayerViewController {
-        PlayerViewController(settings: settings)
+        let viewController = PlayerViewController(settings: settings)
+        viewController.onViewDidDisappear = { [weak self] in
+            guard let self = self else { return }
+            if self.settings.automaticallyLoadNextShow {
+                self.loadCells()
+            }
+        }
+        return viewController
     }
     
     func showPlayer() {

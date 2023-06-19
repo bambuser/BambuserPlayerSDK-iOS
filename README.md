@@ -38,7 +38,7 @@ After installing the SDK, you must import `BambuserPlayerSDK` in every file wher
 
 ### CocoaPods
 
-Add ```pod 'BambuserPlayerSDK', :git => 'https://github.com/bambuser/BambuserPlayerSDK-iOS'``` to your Podfile.
+Add ```pod 'BambuserPlayerSDK'``` to your Podfile.
 
 ### Carthages
 
@@ -83,6 +83,14 @@ You can then add the player anywhere in your app, resize it to fit your needs et
 You can use a `PlayerConfiguration` to configure the player instance. 
 
 [Read more here][Configuration] to learn about how to configure the player, UI overlays, event listeners etc.
+
+
+
+## Player Events
+
+The player will emit `ExternalOutputEvent` values to the event handler that you inject into the player configuration.
+
+[Read more here][Events] to learn about listening for events, extracting data etc.
 
 
 

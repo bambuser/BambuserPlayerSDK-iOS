@@ -1,5 +1,15 @@
 # Release Notes
 
+## 1.1.0
+
+### ✨ New features
+* Allows presentation of a product details page (PDP)
+* New UI-config variable `showPDPOnProductTap` used to choose if the new PDP view should be visible when tapping a product
+* Support for password protected shows
+* Improved accessibility
+
+We have also squashed some bugs 🐛
+
 ## 1.0.0
 
 This version features a complete native rewrite of the BambuserPlayerSDK.

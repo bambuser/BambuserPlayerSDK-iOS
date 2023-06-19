@@ -47,7 +47,7 @@ class HomePickerCell: UITableViewCell {
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
 
             menuButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            menuButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
+            menuButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20)
         ])
 
         contentView.isHidden = true

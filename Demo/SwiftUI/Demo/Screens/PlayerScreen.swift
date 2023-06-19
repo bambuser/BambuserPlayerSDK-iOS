@@ -48,6 +48,7 @@ struct PlayerScreen: View {
             menu
         }
         .sheet(context: sheet)
+        .alert(context: alert)
         .overlay(pdpOverlay)
         .padding(5)
         .navigationBarTitleDisplayMode(.inline)
@@ -119,7 +120,7 @@ private extension PlayerScreen {
             Alert(
                 title: Text("Error"),
                 message: Text(errorText ?? ""),
-                dismissButton: .cancel() {
+                dismissButton: .cancel {
                     dismiss()
                 }
             )
@@ -162,7 +163,6 @@ extension PlayerScreen {
         case .close:
             isPdpOpened = false
             sheet.dismiss()
-            dismiss()
         default: break
         }
     }
@@ -172,11 +172,36 @@ extension PlayerScreen {
     }
 
     func openShareSheet(_ url: URL) {
-        sheet.present(ShareSheet(activityItems: [url]))
+        if #available(iOS 16.0, *) {
+            sheet.present(
+                ShareSheet(activityItems: [url])
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.hidden)
+            )
+        } else {
+            sheet.present(
+                ShareSheet(activityItems: [url])
+            )
+        }
     }
 
     func saveCalendarEvent(in event: CalendarEvent) {
-        event.saveToCalendar(completion: { _ in })
+        event.saveToCalendar { result in
+            switch result {
+            case .success:
+                let successAlert = Alert(
+                    title: Text("Success"),
+                    message: Text("Event was added to calendar at \(event.startDate).")
+                )
+                alert.present(successAlert)
+            case let .failure(error):
+                let errorAlert = Alert(
+                    title: Text("Error"),
+                    message: Text(error.localizedDescription)
+                )
+                alert.present(errorAlert)
+            }
+        }
     }
         
     func openProductDetails(_ product: BambuserPlayerEvent.Product) {

@@ -49,6 +49,16 @@ public struct ShareSheet: UIViewControllerRepresentable {
         return controller
     }
       
-    public func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+    public func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        if #available(iOS 15.0, *) {
+            guard
+                let sheet = uiViewController.sheetPresentationController
+            else { return }
+            
+            if !sheet.detents.contains(.medium()) {
+                sheet.detents = [.medium(), .large()]
+            }
+        }
+    }
 }
 #endif

@@ -22,7 +22,8 @@ let package = Package(
         .target(
             name: "BambuserPlayerBundle",
             dependencies: [
-                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk")
+                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ]
         )
     ]

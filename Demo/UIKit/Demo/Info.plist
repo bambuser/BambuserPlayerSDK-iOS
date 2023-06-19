@@ -64,5 +64,7 @@
 	</array>
 	<key>NSCalendarsUsageDescription</key>
 	<string>The app needs access to your calendar to add upcoming shows.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
