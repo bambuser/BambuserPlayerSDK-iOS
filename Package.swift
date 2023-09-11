@@ -13,7 +13,7 @@ let package = Package(
             targets: ["BambuserPlayerSDK", "BambuserPlayerBundle"])
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: "10.7.0")
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.11.0"))
     ],
     targets: [
         .binaryTarget(
