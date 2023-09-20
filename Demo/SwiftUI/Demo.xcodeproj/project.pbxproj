@@ -546,7 +546,7 @@
 			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = exactVersion;
-				version = 1.1.0;
+				version = 1.1.1;
 			};
 		};
 		E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -554,7 +554,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.7.0;
+				version = 10.15.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

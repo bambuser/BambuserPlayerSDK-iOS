@@ -4,7 +4,7 @@ use_frameworks!
 project 'CocoapodsDemo.xcodeproj'
 
 def player_sdk_pods
-  pod 'BambuserPlayerSDK', '1.1.0'
+  pod 'BambuserPlayerSDK', '1.1.1'
 end
 
 target 'Demo-SwiftUI' do

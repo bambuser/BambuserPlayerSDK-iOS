@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                 = "BambuserPlayerSDK"
-  s.version              = "1.1.0"
+  s.version              = "1.1.1"
   s.author               = { "Bambuser AB" => "support@bambuser.com" }
   s.homepage             = "https://github.com/bambuser/BambuserPlayerSDK-iOS"
   s.summary              = "Bambuser Player SDK for iOS"
@@ -11,9 +11,9 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks  = "Sources/BambuserPlayerSDK.xcframework"
 
-  s.dependency 'Firebase', '10.7.0'
-  s.dependency 'FirebaseFirestoreSwift', '10.7.0'
-  s.dependency 'FirebaseAuth', '10.7.0'
+  s.dependency 'Firebase', '<= 10.15.0'
+  s.dependency 'FirebaseFirestoreSwift', '<= 10.15.0'
+  s.dependency 'FirebaseAuth', '<= 10.15.0'
 
   s.resource_bundles = { 
     "BambuserPlayerSDK_BambuserPlayerBundle" => [
