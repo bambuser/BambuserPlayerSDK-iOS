@@ -26,15 +26,18 @@ class DemoSettings: ObservableObject {
         addListeners()
     }
     
-    
+    // MARK: - Localization
+
+    @Published var preferredLocale: Locale? = .default
+
     // MARK: - Shows
     
     @Published var showId: String = "vAtJH3xevpYTLnf1oHao"
     @Published var environment: BambuserEnvironment?
     @Published var automaticallyLoadNextShow = false
     @Published var upcomingShows: [String] = [
-        "xB4a9LpDq5mU0CdCZa3k",
-        "64HtFC21MpBGEx6RSynn"
+        "evsxrTCdPZeLIvywqA3C",
+        "A9WtDJUip6LNNdpsarwi"
     ]
     
     // MARK: - Configuration
@@ -53,6 +56,8 @@ class DemoSettings: ObservableObject {
     @Published var chatOverlay = true
     @Published var emojiOverlay = true
     @Published var productList = true
+    @Published var productListLayout: PlayerUIConfiguration.HighlightedProductsLayout = .modern
+    @Published var productListLayoutDate = Date()
     @Published var actionBar = true
     @Published var emojiButton = true
     @Published var cartButton = true
@@ -93,6 +98,7 @@ private extension DemoSettings {
      Setup settings fields with `PlayerConfiguration`.
      */
     func setupFields(with configuration: PlayerConfiguration) {
+        preferredLocale = configuration.preferredLocale
         isPiPAutomatic = configuration.pipConfig.isAutomatic
         isPiPEnabled = configuration.pipConfig.isEnabled
         hideUiOnPip = configuration.pipConfig.hideUiOnPip
@@ -100,6 +106,7 @@ private extension DemoSettings {
         chatOverlay = configuration.uiConfig.chatOverlay == .visible
         emojiOverlay = configuration.uiConfig.emojiOverlay == .visible
         productList = configuration.uiConfig.productList == .visible
+        productListLayout = configuration.uiConfig.productListLayout
         actionBar = configuration.uiConfig.actionBar == .visible
         emojiButton = configuration.uiConfig.emojiButton == .visible
         cartButton = configuration.uiConfig.cartButton == .visible
@@ -115,6 +122,7 @@ private extension DemoSettings {
      Add listeres of fields changes to sync the data with `PlayerConfiguration`.
      */
     func addListeners() {
+        addListener(value: $preferredLocale, at: \.preferredLocale)
         addListener(value: $isPiPAutomatic, at: \.pipConfig.isAutomatic)
         addListener(value: $isPiPEnabled, at: \.pipConfig.isEnabled)
         addListener(value: $hideUiOnPip, at: \.pipConfig.hideUiOnPip)
@@ -122,6 +130,7 @@ private extension DemoSettings {
         addListener(value: $chatOverlay, at: \.uiConfig.chatOverlay)
         addListener(value: $emojiOverlay, at: \.uiConfig.emojiOverlay)
         addListener(value: $productList, at: \.uiConfig.productList)
+        addListener(value: $productListLayout, at: \.uiConfig.productListLayout)
         addListener(value: $actionBar, at: \.uiConfig.actionBar)
         addListener(value: $emojiButton, at: \.uiConfig.emojiButton)
         addListener(value: $cartButton, at: \.uiConfig.cartButton)
@@ -136,17 +145,23 @@ private extension DemoSettings {
     /**
      Start listening to published value
      */
-    private func addListener<T>(
-        value: Published<Bool>.Publisher,
-        at keypath: ReferenceWritableKeyPath<PlayerConfiguration, T>
+    private func addListener<P, C>(
+        value: Published<P>.Publisher,
+        at keypath: ReferenceWritableKeyPath<PlayerConfiguration, C>
     ) {
         value.sink { [weak self] value in
-            if let boolValue = value as? T {
-                // If keypath type is Bool
-                self?.playerConfiguration[keyPath: keypath] = boolValue
-            } else if let uiState = value.uiState as? T {
-                // If keypath type is PlayerOverlayVisibility
-                self?.playerConfiguration[keyPath: keypath] = uiState
+            if P.self == C.self {
+                if let value = value as? C {
+                    // If keypath type is equal to the published value type
+                    // (Bool, Locale)
+                    self?.playerConfiguration[keyPath: keypath] = value
+                }
+            } else {
+                if let value = value as? Bool,
+                   let uiState = value.uiState as? C {
+                    // If keypath type is PlayerOverlayVisibility
+                    self?.playerConfiguration[keyPath: keypath] = uiState
+                }
             }
 
             self?.playerConfiguration.saveObject()
@@ -189,5 +204,16 @@ private extension Encodable {
         guard let encoded = try? JSONEncoder().encode(self)
         else { return }
         UserDefaults.standard.set(encoded, forKey: String(describing: Self.self))
+    }
+}
+
+extension Locale {
+    
+    /**
+     Default predefined locale:
+     English (United States).
+     */
+    static var `default`: Locale {
+        return Locale(identifier: "en-US")
     }
 }

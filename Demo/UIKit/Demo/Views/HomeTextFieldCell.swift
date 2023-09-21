@@ -54,6 +54,8 @@ class HomeTextFieldCell: UITableViewCell {
     func setup() {
         textField.placeholder = item.title
         textField.text = item.value
+        textField.autocapitalizationType = item.autocapitalizationType
+        textField.autocorrectionType = item.autocorrectionType
         iconImageView.image = item.image
         iconImageView.contentMode = .scaleAspectFit
     }

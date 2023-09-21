@@ -28,7 +28,8 @@ struct PlayerScreen: View {
     
     @StateObject private var alert = AlertContext()
     @StateObject private var sheet = SheetContext()
-
+    @State private var tracking: BambuserConversionTracking?
+    
     @State var isPipActive = false
     @State var isShowPlaying = true
     
@@ -38,9 +39,6 @@ struct PlayerScreen: View {
     
     @State private var isPdpOpened = false
     @State private var pdpUrl: URL?
-
-    @State private var isErrorOccured = false
-    @State private var errorText: String?
     
     var body: some View {
         VStack(spacing: 5) {
@@ -57,6 +55,7 @@ struct PlayerScreen: View {
             preferred: UIDevice.current.isPad() ? nil : .portrait
         )
         .onAppear {
+            tracking = BambuserConversionTracking()
             if !UIDevice.current.isPad() {
                 AppDelegate.orientationLock = .portrait
             }
@@ -99,6 +98,7 @@ private extension PlayerScreen {
             showCloseButton: showCloseButton)
             .asOverlay()
             .padding(5)
+            .environmentObject(settings)
     }
     
     var player: some View {
@@ -116,15 +116,6 @@ private extension PlayerScreen {
             context: settings.playerContext,
             handlePlayerEvent: handlePlayerEvent
         )
-        .alert(isPresented: $isErrorOccured, content: {
-            Alert(
-                title: Text("Error"),
-                message: Text(errorText ?? ""),
-                dismissButton: .cancel {
-                    dismiss()
-                }
-            )
-        })
     }
 }
 
@@ -212,6 +203,15 @@ extension PlayerScreen {
         if settings.isPiPEnabled {
             settings.playerContext.sendEvent(.enterPiP)
         }
+        // create a new event to track purchases
+        // replace the values with your data
+        let event = PurchaseTrackingEvent(
+            orderId: "123", // the order id
+            orderValue: 12345.0, // total of all products in the order
+            orderProductIds: [product.id], // array of all product ids in the order
+            currency: "USD" // the currency used for the order (ISO 4217)
+        )
+        tracking?.collect(event)
         
         if openPdpInNavigationStack {
             pdpUrl = url
@@ -231,6 +231,7 @@ extension PlayerScreen {
     }
     
     func handlePlayerError(_ error: BambuserPlayerSDKError) {
+        var errorText = "Unknown error"
         switch error {
         case .showInitialization:
             errorText = "Can't start the show. Please check your 'Show Id'."
@@ -239,7 +240,11 @@ extension PlayerScreen {
         case .unknown(let error):
             errorText = error?.localizedDescription ?? "-"
         }
-        isErrorOccured = true
+
+        alert(title: "Error", message: errorText, buttonText: "Ok") {
+            alert.dismiss()
+            dismiss()
+        }
     }
 }
 
@@ -248,10 +253,19 @@ extension PlayerScreen {
 
 private extension PlayerScreen {
     
-    func alert(title: String, message: String) {
+    func alert(
+        title: String,
+        message: String,
+        buttonText: String? = nil,
+        buttonAction: (() -> Void)? = nil
+    ) {
+        let button: Alert.Button? = buttonText != nil ?
+            .cancel(Text(buttonText!), action: buttonAction) : nil
+        
         alert.present(Alert(
             title: Text(title),
-            message: Text(message)
+            message: Text(message),
+            dismissButton: button
         ))
     }
 }

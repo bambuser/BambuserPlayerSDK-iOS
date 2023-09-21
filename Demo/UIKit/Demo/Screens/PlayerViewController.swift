@@ -21,6 +21,7 @@ import SwiftUI
  */
 class PlayerViewController: BambuserPlayerViewController, DemoPlayerEventHandler {
     
+    private let tracking = BambuserConversionTracking()
     
     // MARK: - Initialization
     
@@ -76,7 +77,6 @@ class PlayerViewController: BambuserPlayerViewController, DemoPlayerEventHandler
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
         
         if #available(iOS 16.0, *) {
             self.setNeedsUpdateOfSupportedInterfaceOrientations()
@@ -194,6 +194,16 @@ extension PlayerViewController {
         guard let url = product.publicUrl else {
             return
         }
+        
+        // create a new event to track purchases
+        // replace the values with your data
+        let event = PurchaseTrackingEvent(
+            orderId: "123", // the order id
+            orderValue: 12345.0, // total of all products in the order
+            orderProductIds: [product.id], // array of all product ids in the order
+            currency: "USD" // the currency used for the order (ISO 4217)
+        )
+        tracking.collect(event)
 
         let webController = CustomWebViewController(url: url) { [ weak self] in
             if self?.settings.isPiPEnabled == true {

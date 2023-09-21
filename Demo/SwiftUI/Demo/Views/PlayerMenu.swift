@@ -24,7 +24,9 @@ struct PlayerMenu: View {
     var body: some View {
         HStack {
             button(isShowPlayingImage, action: toggleShowIsPlaying)
-            button(pipImage, action: togglePip)
+            if settings.isPiPEnabled {
+                button(pipImage, action: togglePip)
+            }
             if showCloseButton {
                 button(.close, action: dismiss)
             }

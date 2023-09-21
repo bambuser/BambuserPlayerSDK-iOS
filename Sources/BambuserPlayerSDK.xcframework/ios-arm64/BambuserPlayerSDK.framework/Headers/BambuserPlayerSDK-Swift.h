@@ -230,6 +230,8 @@ using UInt = size_t;
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreFoundation;
+@import UIKit;
 #endif
 
 #endif
@@ -250,6 +252,20 @@ using UInt = size_t;
 #endif
 
 #if defined(__OBJC__)
+@class NSCoder;
+
+SWIFT_CLASS("_TtC17BambuserPlayerSDK20BambuserPlayerUIView")
+@interface BambuserPlayerUIView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (void)layoutSubviews;
+- (void)removeFromSuperview;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+
+
+
+
 
 
 

@@ -15,6 +15,7 @@ import BambuserPlayerSDK
 struct SettingsListSection: View {
     
     @EnvironmentObject private var settings: DemoSettings
+    @State var preferredLocaleIdentifier: String = ""
     @State var selectedEnvironment: SelectableEnvironment = .auto
     @State var otherEnvironmentName: String = ""
     
@@ -22,6 +23,7 @@ struct SettingsListSection: View {
     
     var body: some View {
         Group {
+            localizationSection
             configurationSection
             upcomingShowsSection
             pipSection
@@ -29,14 +31,31 @@ struct SettingsListSection: View {
             actionBarSection
             productsSection
         }
+        .onAppear {
+            setup()
+        }
     }
 
+    var localizationSection: some View {
+        Section(header: Text("Localization")) {
+            text(
+                .globe,
+                "Preferred locale", $preferredLocaleIdentifier
+            )
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+            .onChange(of: preferredLocaleIdentifier) { newValue in
+                settings.preferredLocale = Locale(identifier: newValue)
+            }
+        }
+    }
+    
     var configurationSection: some View {
         Section(header: Text("Configuration")) {
             text(.id, "Show ID", $settings.showId)
 
             picker(
-                .globe,
+                .server,
                 "Environment",
                 options: SelectableEnvironment.allCases.map { $0.rawValue },
                 selection: .init(
@@ -127,6 +146,35 @@ struct SettingsListSection: View {
             toggle(.chat, "Show chat overlay", $settings.chatOverlay)
             toggle(.heart, "Show emoji overlay", $settings.emojiOverlay)
             toggle(.bag, "Show product list", $settings.productList)
+            picker(
+                .productList,
+                "Product list",
+                options: PlayerUIConfiguration.HighlightedProductsLayout.allCases.map({ $0.rawValue }),
+                selection: .init(
+                    get: { settings.productListLayout.rawValue },
+                    set: { newValue in
+                        withAnimation {
+                            settings.productListLayout = .init(
+                                rawValue: newValue,
+                                date: settings.productListLayoutDate
+                            )
+                        }
+                    }
+                ))
+
+            if settings.productListLayout.isAutomatic {
+                datePicker(
+                    .calendar,
+                    "Product list breaking point date",
+                    selection: .init(
+                        get: { settings.productListLayoutDate },
+                        set: { newValue in
+                            settings.productListLayoutDate = newValue
+                            settings.productListLayout = .configurable(date: newValue)
+                        }
+                    )
+                )
+            }
         }
     }
 
@@ -146,6 +194,14 @@ struct SettingsListSection: View {
             toggle(.product, "Open PDP on product tap", $settings.showPDPOnProductTap)
             toggle(.bag, "Show products on curtain", $settings.productsOnCurtain)
             toggle(.timestamp, "Show product play button", $settings.productPlayButton)
+        }
+    }
+}
+
+private extension SettingsListSection {
+    func setup() {
+        if let localeId = settings.preferredLocale?.identifier {
+            preferredLocaleIdentifier = localeId
         }
     }
 }
@@ -208,6 +264,13 @@ private extension SettingsListSection {
                     Text(item.capitalized)
                 }
             }
+        }
+    }
+
+    func datePicker(_ icon: Image, _ title: String, selection: Binding<Date>) -> some View {
+        HStack {
+            ListIcon(icon: icon)
+            DatePicker(selection: selection, displayedComponents: [.date], label: { Text(title) })
         }
     }
 }

@@ -25,6 +25,14 @@ class HomeViewController: UITableViewController {
     
     required init?(coder: NSCoder) { nil }
 
+    var preferredLocaleIdentifier: String {
+        get {
+            settings.preferredLocale?.identifier ??
+            Locale.default.identifier
+        }
+        set { settings.preferredLocale = Locale(identifier: newValue) }
+    }
+    
     var selectedEnvironment: SelectableEnvironment {
         get { .init(environment: settings.environment) }
         set { settings.environment = newValue.environment(otherName: otherEnvironmentName) }
@@ -41,7 +49,6 @@ class HomeViewController: UITableViewController {
         
         title = "Demo"
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.contentInset = .zero
         tableView.rowHeight = UITableView.automaticDimension
@@ -101,8 +108,27 @@ class HomeViewController: UITableViewController {
             value: nil,
             accessoryType: .disclosureIndicator,
             onValueChanged: nil))
+    
+    private lazy var showMultiplePlayers = HomeNormalCell(
+        item: HomeCellViewModel(
+            title: "Show multiple players in list",
+            image: .cover,
+            value: nil,
+            accessoryType: .disclosureIndicator,
+            onValueChanged: nil))
 
+    // MARK: - Section 1
 
+    private lazy var preferredLocaleCell = HomeTextFieldCell(
+        item: HomeCellViewModel(
+            title: "Preferred locale",
+            image: .globe,
+            value: preferredLocaleIdentifier,
+            autocapitalizationType: .none,
+            autocorrectionType: .no) {
+                self.preferredLocaleIdentifier = $0
+            })
+    
     // MARK: - Section 2
 
     private var showIdCell: HomeTextFieldCell {
@@ -118,12 +144,12 @@ class HomeViewController: UITableViewController {
     private lazy var environmentCell = HomePickerCell(
         item: HomeCellViewModel(
             title: "Environment",
-            image: .calendar,
-            value: selectedEnvironment.rawValue) {
-                self.selectedEnvironment = .init(rawValue: $0) ?? .auto
+            image: .server,
+            value: selectedEnvironment.rawValue.capitalized) {
+                self.selectedEnvironment = .init(rawValue: $0.lowercased()) ?? .auto
                 self.loadCells()
             },
-        options: SelectableEnvironment.allCases.map { $0.rawValue }
+        options: SelectableEnvironment.allCases.map { $0.rawValue.capitalized }
     )
 
     private lazy var otherEnvironmentCell = HomeTextFieldCell(
@@ -211,7 +237,38 @@ class HomeViewController: UITableViewController {
             self.settings.productList = $0
         })
 
-    // MARK: - Section 4
+    private lazy var productListStyleCell = HomePickerCell(
+        item: .init(
+            title: "Product list",
+            image: .productList,
+            value: settings.productListLayout.rawValue,
+            onValueChanged: { newValue in
+                self.settings.productListLayout = .init(
+                    rawValue: newValue,
+                    date: self.settings.productListLayoutDate
+                )
+
+                self.loadCells()
+            }), options: PlayerUIConfiguration.HighlightedProductsLayout
+            .allCases.map({ $0.rawValue })
+    )
+
+    private var productListStyleDateCell: HomeDatePickerCell? {
+        if case .configurable(date: let date) = settings.productListLayout {
+            return HomeDatePickerCell(item: .init(
+                title: "Product list breaking point date",
+                image: .calendar,
+                value: date,
+                onValueChanged: { newValue in
+                    self.settings.productListLayoutDate = newValue
+                    self.settings.productListLayout = .configurable(date: newValue)
+                }))
+        } else {
+            return nil
+        }
+    }
+
+    // MARK: - Section 5
 
     private lazy var actionBarCell = HomeToggleCell(
         item: HomeCellViewModel(
@@ -263,12 +320,28 @@ class HomeViewController: UITableViewController {
     
     // MARK: - Curtain
     
+    private lazy var pdpCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Open PDP on product tap",
+            image: .product,
+            value: settings.showPDPOnProductTap) {
+            self.settings.showPDPOnProductTap = $0
+        })
+    
     private lazy var productsCurtainCell = HomeToggleCell(
         item: HomeCellViewModel(
             title: "Show products on curtain",
             image: .bag,
             value: settings.productsOnCurtain) {
             self.settings.productsOnCurtain = $0
+        })
+    
+    private lazy var productPlayCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Show product play button",
+            image: .timestamp,
+            value: settings.productPlayButton) {
+            self.settings.productPlayButton = $0
         })
 }
 
@@ -283,13 +356,15 @@ extension HomeViewController {
         let upcomingShowsSection: [UITableViewCell]? = settings.automaticallyLoadNextShow ? upcomingCells() : nil
                 
         staticCells = [
-            [showPlayerCell, showPlayerAsSheetCell, fullScreenCoverCell],
+            [showPlayerCell, showPlayerAsSheetCell, fullScreenCoverCell, showMultiplePlayers],
+            [preferredLocaleCell],
             [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
             upcomingShowsSection,
             [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
-            [allUiCell, chatOverlayCell, emojiOverlayCell, productListCell],
+            [allUiCell, chatOverlayCell, emojiOverlayCell, productListCell, productListStyleCell, productListStyleDateCell]
+                .compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
-            [productsCurtainCell]
+            [pdpCell, productsCurtainCell, productPlayCell]
         ].compactMap({ $0 })
 
         tableView.reloadData()
@@ -306,13 +381,14 @@ extension HomeViewController {
             case 0: showPlayer()
             case 1: showPlayerAsSheet()
             case 2: showPlayerAsFullscreenModal()
+            case 3: showPlayerList()
             default: break
             }
         }
         
         // Upcoming shows section. Click on '+' button
         if settings.automaticallyLoadNextShow,
-           indexPath.section == 2,
+           indexPath.section == 3,
             settings.upcomingShows.count == indexPath.row {
             if !settings.upcomingShows.contains(where: { $0.isEmpty }) {
                 settings.upcomingShows.append(String())
@@ -323,7 +399,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return settings.automaticallyLoadNextShow &&
-           indexPath.section == 2 &&
+           indexPath.section == 3 &&
            settings.upcomingShows.count > indexPath.row
     }
     
@@ -382,6 +458,11 @@ private extension HomeViewController {
         let playerVC = playerController
         playerVC.modalPresentationStyle = .fullScreen
         present(playerVC, animated: true, completion: nil)
+    }
+    
+    func showPlayerList() {
+        let controller = PlayerListViewController(settings: settings)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

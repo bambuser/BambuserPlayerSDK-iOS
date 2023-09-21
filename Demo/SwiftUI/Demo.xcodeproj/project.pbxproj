@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A5657B534571FEC892D25F7 /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EEB122AE4879CE3D8A06DA /* ListIcon.swift */; };
-		123E18513139EE34698332A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 238EEE5FCDEE938154ED6BD5 /* FirebaseAuth */; };
 		2739C0980D6C355A55F06C3D /* DemoPlayerEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF946914A24226107B665396 /* DemoPlayerEventHandler.swift */; };
 		295EC4D82D59B92DEE20E8C6 /* View+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141C70E858C87104C6D96D13 /* View+Orientation.swift */; };
 		2C2F7DCD4993F44D3CA4E33C /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D077035798B6A4B7D16D85D /* View+Alert.swift */; };
@@ -29,14 +28,12 @@
 		968DD52893C8709CF40D8C8D /* PlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E60320E4CD6310B93F1D9D /* PlayerScreen.swift */; };
 		A2D1E0316B4A9B379C0B83DA /* BambuserPlayerSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 42DFD4FEE1450F60D2D3EEFC /* BambuserPlayerSDK */; };
 		AA0FFFAB255A4CD24BE75593 /* FullScreenCoverProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC028860B03C2542643CA99 /* FullScreenCoverProvider.swift */; };
-		AC80533C5B4D5FE8A34B75A2 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB656BFE849F087DFB6721A /* Collection+Safe.swift */; };
 		AFC093F820C05530219889D6 /* DemoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C779573369599FB80BF580 /* DemoSettings.swift */; };
 		B0524861E8A9897E5EE5435B /* PresentationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE3A3505C6AA34FFD7914F7 /* PresentationContext.swift */; };
-		B24953B1A7E8E60E8E88043C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8465DA49B07DCF7873C601EA /* FirebaseFirestore */; };
 		B4CAF4F92BFA3F92A264BC07 /* BambuserLogoBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813002A307652AEFE6945B06 /* BambuserLogoBackground.swift */; };
 		B656E45B8F3ACF7ECF000389 /* SettingsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F2D78757FE7EAFC9ADB21 /* SettingsListSection.swift */; };
-		B85060025A02C9DFCD97AEFA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2E8ED7C6261ACEDEB6C33D8F /* FirebaseFirestoreSwift */; };
 		BCA35D0E9BBA736AEE5CA7F7 /* DemoSettings+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C79B888893FCC2C6F95FB /* DemoSettings+Private.swift */; };
+		C436C21D6EB8D2BF29D52A7E /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89B73F7B95775902F43206 /* Collection+Safe.swift */; };
 		CD7C4549042A4AE244F09934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30BA7271EB3F3F6BFA2E807 /* Assets.xcassets */; };
 		D22128E3609DA7E88C2A9717 /* View+FullScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B367B7AD447659374D445 /* View+FullScreenCover.swift */; };
 		D7AC14CA9527F978DAE72B83 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537E53AA363D8CA118944860 /* ListItem.swift */; };
@@ -54,7 +51,6 @@
 		3A48BB636BBA88D77B039D80 /* AlertContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContext.swift; sourceTree = "<group>"; };
 		3C0E0FD9DDBEEBE6B758D109 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		40E50F69730E5B590D987763 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4CB656BFE849F087DFB6721A /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		4FA02544D6B6083225EF1409 /* PlayerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMenu.swift; sourceTree = "<group>"; };
 		50FA18A4F1A3A229ABE483E0 /* View+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Sheet.swift"; sourceTree = "<group>"; };
 		537E53AA363D8CA118944860 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
@@ -84,6 +80,7 @@
 		DCC028860B03C2542643CA99 /* FullScreenCoverProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenCoverProvider.swift; sourceTree = "<group>"; };
 		E30BA7271EB3F3F6BFA2E807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAE3A3505C6AA34FFD7914F7 /* PresentationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationContext.swift; sourceTree = "<group>"; };
+		EB89B73F7B95775902F43206 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +89,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D1E0316B4A9B379C0B83DA /* BambuserPlayerSDK in Frameworks */,
-				B24953B1A7E8E60E8E88043C /* FirebaseFirestore in Frameworks */,
-				B85060025A02C9DFCD97AEFA /* FirebaseFirestoreSwift in Frameworks */,
-				123E18513139EE34698332A3 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +98,7 @@
 		0DEC51AB25215E3687363771 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				EB89B73F7B95775902F43206 /* Collection+Safe.swift */,
 				D9124E962F15C73129CF96CF /* CustomWebView.swift */,
 				1F06C1E96AF750D1778EB22E /* CustomWebViewController.swift */,
 				BF946914A24226107B665396 /* DemoPlayerEventHandler.swift */,
@@ -173,7 +168,6 @@
 		764C0BDEC34A982C493CA555 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4CB656BFE849F087DFB6721A /* Collection+Safe.swift */,
 				D8AD8F0CA17F65E07DEC3E91 /* UIDevice+Utility.swift */,
 				141C70E858C87104C6D96D13 /* View+Orientation.swift */,
 			);
@@ -258,9 +252,6 @@
 			name = "Demo-SwiftUI";
 			packageProductDependencies = (
 				42DFD4FEE1450F60D2D3EEFC /* BambuserPlayerSDK */,
-				8465DA49B07DCF7873C601EA /* FirebaseFirestore */,
-				2E8ED7C6261ACEDEB6C33D8F /* FirebaseFirestoreSwift */,
-				238EEE5FCDEE938154ED6BD5 /* FirebaseAuth */,
 			);
 			productName = "Demo-SwiftUI";
 			productReference = B760D781D6FE9FC2A94ACF29 /* Demo-SwiftUI.app */;
@@ -326,7 +317,7 @@
 				93800F9D4E734A91ABC92FE9 /* AlertProvider.swift in Sources */,
 				813AB51736D62065A1F4F861 /* AppDelegate.swift in Sources */,
 				B4CAF4F92BFA3F92A264BC07 /* BambuserLogoBackground.swift in Sources */,
-				AC80533C5B4D5FE8A34B75A2 /* Collection+Safe.swift in Sources */,
+				C436C21D6EB8D2BF29D52A7E /* Collection+Safe.swift in Sources */,
 				90D78BC8624FA981276DC982 /* CustomWebView.swift in Sources */,
 				317FCAB1737FB618191386FB /* CustomWebViewController.swift in Sources */,
 				4770AEB6482AC0F5D0F3A4B2 /* DemoApp.swift in Sources */,
@@ -546,7 +537,7 @@
 			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = exactVersion;
-				version = 1.1.1;
+				version = 1.2.0;
 			};
 		};
 		E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -554,31 +545,16 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.15.0;
+				version = 10.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		238EEE5FCDEE938154ED6BD5 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		2E8ED7C6261ACEDEB6C33D8F /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
 		42DFD4FEE1450F60D2D3EEFC /* BambuserPlayerSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 90018CF6A7CA593E8C78E833 /* XCRemoteSwiftPackageReference "BambuserPlayerSDK-iOS" */;
 			productName = BambuserPlayerSDK;
-		};
-		8465DA49B07DCF7873C601EA /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

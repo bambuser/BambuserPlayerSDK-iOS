@@ -38,9 +38,11 @@ extension Image {
     static let id = image("textformat.123")
     static let textField = image("square.and.pencil")
     static let globe = image("globe")
+    static let server = image("server.rack")
     static let otherEnvironment = image("circle.dotted")
     static let automatic = image("arrow.triangle.2.circlepath")
     static let timestamp = image("clock")
+    static let productList = image("rectangle.grid.1x2")
 }
 
 private extension Image {

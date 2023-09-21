@@ -96,11 +96,27 @@ The player will emit `ExternalOutputEvent` values to the event handler that you 
 
 ## Picture-in-Picture
 
-Bambuser Live Video Shopping Player supports native picture-in-picture (referred to as `PiP` in the text below).
+BambuserPlayerSDK supports native picture-in-picture (referred to as `PiP` in the text below).
 
 [Read more here][PictureInPicture] to learn about manual and automatic PiP enabling, PiP restoration etc. 
 
+## Conversion tracking
 
+To improve statistics on conversion you can use *Conversion tracking*.
+
+[Read more here][ConversionTracking] to learn about how to set up conversion tracking.
+
+## Multiple players
+
+If you want to display multiple players at the same time, or show them in a scrollable list you might need to add some custom handling.
+
+[Read more here][MultiplePlayers] to learn about how to display multiple players at the same time.
+
+## Localization
+
+To manage the current locale of the player you can use *Localization*.
+
+[Read more here][Localization] to learn about setting up preferred locale and locale priority. 
 
 ## Demo apps
 
@@ -114,5 +130,8 @@ Have a look at these apps for examples on how to add a live shopping player to y
 [ReleaseNotes]: ./RELEASE_NOTES.md
 
 [Configuration]: ./Readmes/Configuration.md
-[Events]: ./Readmes/Events.md
+[Events]: ./Readmes/Configuration.md#handle-events
 [PictureInPicture]: ./Readmes/PictureInPicture.md
+[ConversionTracking]: ./Readmes/ConversionTracking.md
+[MultiplePlayers]: ./Readmes/MultiplePlayers.md
+[Localization]: ./Readmes/Localization.md

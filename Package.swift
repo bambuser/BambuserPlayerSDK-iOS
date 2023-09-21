@@ -27,6 +27,9 @@ let package = Package(
             dependencies: [
                 .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
+            ],
+            resources: [
+                .process("Resources/Localization/LocalizedStrings-English.json")
             ]
         )
     ]

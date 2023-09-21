@@ -11,4 +11,20 @@ class MainNavigationController: UINavigationController {
         visibleViewController?.preferredInterfaceOrientationForPresentation ??
             super.preferredInterfaceOrientationForPresentation
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+}
+
+private extension MainNavigationController {
+    func setupUI() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemGroupedBackground
+        appearance.shadowImage = UIImage()
+        appearance.shadowColor = .clear
+
+        navigationBar.scrollEdgeAppearance = appearance
+    }
 }

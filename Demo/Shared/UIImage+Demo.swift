@@ -22,6 +22,7 @@ extension UIImage {
     static let pipRestore = image("arrow.uturn.forward")
     static let player = image("play.rectangle")
     static let product = image("tag")
+    static let productList = image("rectangle.grid.1x2")
     static let rectangle = image("rectangle")
     static let share = image("square.and.arrow.up")
     static let sheet = image("rectangle.bottomthird.inset.fill")
@@ -35,7 +36,9 @@ extension UIImage {
     static let id = image("textformat.123")
     static let textField = image("square.and.pencil")
     static let globe = image("globe")
+    static let server = image("server.rack")
     static let otherEnvironment = image("circle.dotted")
+    static let timestamp = image("clock")
 }
 
 private extension UIImage {

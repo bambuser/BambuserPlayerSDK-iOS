@@ -12,12 +12,12 @@ extension HomeViewController {
     func updateHeaderTitles() {
         headerTitles = [
             "Player",
+            "Localization",
             "Configuration",
             settings.automaticallyLoadNextShow ? "Upcoming shows" : nil,
             "Picture-In-Picture",
             "UI Overlays",
             "Action Bar",
-            "Curtains",
             "Products"
         ].compactMap({ $0 })
     }

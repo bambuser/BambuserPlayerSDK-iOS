@@ -6,6 +6,7 @@ The player configuration specifies the following configuration parameters:
 
 * `pipConfig` - The picture-in-picture configuration to use, by default `.standard`.
 * `uiConfig` - The UI configuration to use, by default `.minimal`.
+* `preferredLocale` - The optional preferred locale of the player.
 
 To configure the player:
 
@@ -13,7 +14,9 @@ UIKit:
 ```swift
 var config = PlayerConfiguration(
     pipConfig: .standard,
-    uiConfig: .minimal)
+    uiConfig: .minimal,
+    preferredLocale: Locale(identifier: "sv-SE")
+)
 
 var context = BambuserPlayerContext()
 
@@ -31,7 +34,9 @@ SwiftUI:
 ```swift
 var config = PlayerConfiguration(
     pipConfig: .standard,
-    uiConfig: .minimal)
+    uiConfig: .minimal,
+    preferredLocale: Locale(identifier: "sv-SE")
+)
 
 var context = BambuserPlayerContext()
 
@@ -92,16 +97,22 @@ There are two predefined UI configurations you can choose from if you do not wan
 This config specifies the following UI configurations:
 
 * `allUi` - The visibility of all UI in the player, by default `.visible`
+* `closeButton` - The visibility of the close player button, by default `.visible`
 * `chatOverlay` - The visibility of the chat overlay, by default `.visible`
 * `chatInputField` - The visibility of the chat text input field, by default `.visible`
 * `emojiOverlay` - The visibility of the emoji overlay, by default `.visible`
 * `productList` - The visibility of the product list, by default `.visible`
+* `productListLayout` - The layout of the product list, by default `.modern`
 * `actionBar` - The visibility of the action bar, by default `.visible`
 * `emojiButton` - The visibility of the emoji button, by default `.visible`
 * `cartButton` - The visibility of the cart button, by default `.visible`
 * `productsOnEndCurtain` - The visibility of the product list on the end-curtain, by default `.visible`
+* `showPDPOnProductTap` - If the player should show the PDP instead of sending an event directly, by default `true`
+* `productPlayButton` - The visibility of the "shown at xx:xx" button on PDP, by default `.visible`
 * `chatVisibilityButton` - The visibility of the chat visibility button, by default `.visible`
+* `chatSize` - The relative size of the chat area. Width/height is in the range of 0...1. By default `nil`
 * `shareButton` - The visibility of the share button, by default `.visible`
+* `ignoreSystemInsets` - If it's enabled, the safe area and status bar insets are removed. By default `false`
 
 
 ## PictureInPictureConfiguration
