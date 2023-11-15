@@ -12,6 +12,9 @@ Pod::Spec.new do |s|
   s.vendored_frameworks  = "Sources/BambuserPlayerSDK.xcframework"
 
   s.dependency 'Firebase', '<= 10.15.0'
+  s.dependency 'FirebaseCore', '<= 10.15.0'
+  s.dependency 'FirebaseCoreInternal', '<= 10.15.0'
+  s.dependency 'FirebaseFirestore', '<= 10.15.0'
   s.dependency 'FirebaseFirestoreSwift', '<= 10.15.0'
   s.dependency 'FirebaseAuth', '<= 10.15.0'
 
