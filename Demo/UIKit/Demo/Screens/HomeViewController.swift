@@ -213,6 +213,14 @@ class HomeViewController: UITableViewController {
             self.settings.allUI = $0
         })
     
+    private lazy var showNumberOfViewersCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Show number of viewers",
+            image: .number,
+            value: settings.showNumberOfViewers) {
+            self.settings.showNumberOfViewers = $0
+        })
+    
     private lazy var chatOverlayCell = HomeToggleCell(
         item: HomeCellViewModel(
             title: "Show chat overlay",
@@ -361,7 +369,7 @@ extension HomeViewController {
             [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
             upcomingShowsSection,
             [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
-            [allUiCell, chatOverlayCell, emojiOverlayCell, productListCell, productListStyleCell, productListStyleDateCell]
+            [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell, productListCell, productListStyleCell, productListStyleDateCell]
                 .compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
             [pdpCell, productsCurtainCell, productPlayCell]

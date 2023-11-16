@@ -1,11 +1,12 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)
+// swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.1 clang-1403.0.22.11.100)
 // swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name BambuserPlayerSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFoundation.AVFAudio
 import AVFoundation
 
 import Combine
+import Combine/*.Combine*/
 import EventKit
 
 
@@ -25,9 +26,9 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 final public class BambuserConversionTracking {
-  final public var onError: ((Swift.Error) -> Swift.Void)?
+  final public var onError: ((any Swift.Error) -> Swift.Void)?
   public init()
-  final public func collect(_ event: BambuserPlayerSDK.TrackingEvent)
+  final public func collect(_ event: any BambuserPlayerSDK.TrackingEvent)
   final public func cleanTrackingData()
   @objc deinit
 }
@@ -35,8 +36,8 @@ public enum BambuserEnvironment : Swift.Codable {
   case global
   case eu
   case other(name: Swift.String)
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public class BambuserPlayerContext {
   public init()
@@ -116,8 +117,8 @@ public enum BambuserPlayerEvent {
 }
 public enum BambuserPlayerSDKError : Swift.Error {
   case showInitialization
-  case playerInitialization(error: Swift.Error?)
-  case unknown(error: Swift.Error?)
+  case playerInitialization(error: (any Swift.Error)?)
+  case unknown(error: (any Swift.Error)?)
 }
 extension BambuserPlayerSDK.BambuserPlayerSDKError : Foundation.LocalizedError {
   public var errorDescription: Swift.String? {
@@ -167,12 +168,12 @@ public struct CalendarEvent : Swift.Codable, Swift.Equatable {
   public enum AddToCalendarError : Swift.Error {
     case calendarAccessNotGranted
     case defaultCalendarNotFound
-    case error(Swift.Error)
+    case error(any Swift.Error)
   }
   public func saveToCalendar(_ calendar: @escaping BambuserPlayerSDK.CalendarEvent.CalendarPicker = { $0.defaultCalendarForNewEvents }, in store: @escaping BambuserPlayerSDK.CalendarEvent.StorePicker = { EKEventStore() }, completion: @escaping BambuserPlayerSDK.CalendarEvent.AddToCalendarCompletion)
   public static func == (a: BambuserPlayerSDK.CalendarEvent, b: BambuserPlayerSDK.CalendarEvent) -> Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum BambuserFirebaseDocumentError : Foundation.LocalizedError {
   case decode(Swift.String)
@@ -198,8 +199,8 @@ extension BambuserPlayerSDK.PlayerUIConfiguration {
     case modern
     public static func == (a: BambuserPlayerSDK.PlayerUIConfiguration.HighlightedProductsLayout, b: BambuserPlayerSDK.PlayerUIConfiguration.HighlightedProductsLayout) -> Swift.Bool
     public typealias AllCases = [BambuserPlayerSDK.PlayerUIConfiguration.HighlightedProductsLayout]
-    public func encode(to encoder: Swift.Encoder) throws
-    public init(from decoder: Swift.Decoder) throws
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
 public struct LiveShoppingShareHelper {
@@ -207,7 +208,7 @@ public struct LiveShoppingShareHelper {
 }
 public class PictureInPictureConfiguration : Foundation.ObservableObject, Swift.Codable, Swift.Equatable {
   public init(isEnabled: Swift.Bool = true, isAutomatic: Swift.Bool = true, hideUiOnPip: Swift.Bool = true)
-  required public init(from decoder: Swift.Decoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
   @Combine.Published @_projectedValueProperty($isAutomatic) public var isAutomatic: Swift.Bool {
     get
     set
@@ -263,7 +264,7 @@ extension BambuserPlayerSDK.PictureInPictureConfiguration {
       get
     }
   }
-  public func encode(to encoder: Swift.Encoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 extension BambuserPlayerSDK.PictureInPictureConfiguration {
   public static func == (lhs: BambuserPlayerSDK.PictureInPictureConfiguration, rhs: BambuserPlayerSDK.PictureInPictureConfiguration) -> Swift.Bool
@@ -282,7 +283,7 @@ extension BambuserPlayerSDK.PictureInPictureConfiguration {
 }
 public class PlayerConfiguration : Foundation.ObservableObject, Swift.Codable {
   public init(pipConfig: BambuserPlayerSDK.PictureInPictureConfiguration = .standard, uiConfig: BambuserPlayerSDK.PlayerUIConfiguration = .minimal, preferredLocale: Foundation.Locale? = nil)
-  required public init(from decoder: Swift.Decoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
   public var pipConfig: BambuserPlayerSDK.PictureInPictureConfiguration
   public var uiConfig: BambuserPlayerSDK.PlayerUIConfiguration
   public var preferredLocale: Foundation.Locale?
@@ -311,7 +312,7 @@ extension BambuserPlayerSDK.PlayerConfiguration {
       get
     }
   }
-  public func encode(to encoder: Swift.Encoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 extension BambuserPlayerSDK.PlayerConfiguration {
   public func copy() -> BambuserPlayerSDK.PlayerConfiguration?
@@ -354,14 +355,24 @@ public enum PlayerState : Swift.String, Swift.CaseIterable, Swift.Codable, Swift
   }
 }
 public class PlayerUIConfiguration : Foundation.ObservableObject, Swift.Codable, Swift.Equatable {
-  public init(allUi: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, closeButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatOverlay: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatInputField: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, emojiOverlay: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productList: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productListLayout: BambuserPlayerSDK.PlayerUIConfiguration.HighlightedProductsLayout = .modern, actionBar: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, emojiButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, cartButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productsOnEndCurtain: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, showPDPOnProductTap: Swift.Bool = true, productPlayButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatVisibilityButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatSize: CoreFoundation.CGSize? = nil, shareButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, ignoreSystemInsets: Swift.Bool = false)
-  required public init(from decoder: Swift.Decoder) throws
+  public init(allUi: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, showNumberOfViewers: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, closeButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatOverlay: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatInputField: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, emojiOverlay: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productList: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productListLayout: BambuserPlayerSDK.PlayerUIConfiguration.HighlightedProductsLayout = .modern, actionBar: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, emojiButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, cartButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, productsOnEndCurtain: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, showPDPOnProductTap: Swift.Bool = true, productPlayButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatVisibilityButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, chatSize: CoreFoundation.CGSize? = nil, shareButton: BambuserPlayerSDK.PlayerOverlayVisiblity = .visible, ignoreSystemInsets: Swift.Bool = false)
+  required public init(from decoder: any Swift.Decoder) throws
   @Combine.Published @_projectedValueProperty($allUI) public var allUI: BambuserPlayerSDK.PlayerOverlayVisiblity {
     get
     set
     _modify
   }
   public var $allUI: Combine.Published<BambuserPlayerSDK.PlayerOverlayVisiblity>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published @_projectedValueProperty($showNumberOfViewers) public var showNumberOfViewers: BambuserPlayerSDK.PlayerOverlayVisiblity {
+    get
+    set
+    _modify
+  }
+  public var $showNumberOfViewers: Combine.Published<BambuserPlayerSDK.PlayerOverlayVisiblity>.Publisher {
     get
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
@@ -536,6 +547,7 @@ extension BambuserPlayerSDK.PlayerUIConfiguration {
 extension BambuserPlayerSDK.PlayerUIConfiguration {
   public enum CodingKeys : Swift.CodingKey {
     case allUI
+    case showNumberOfViewers
     case closeButton
     case chatOverlay
     case chatInputField
@@ -566,7 +578,7 @@ extension BambuserPlayerSDK.PlayerUIConfiguration {
       get
     }
   }
-  public func encode(to encoder: Swift.Encoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 extension BambuserPlayerSDK.PlayerUIConfiguration {
   public static func == (lhs: BambuserPlayerSDK.PlayerUIConfiguration, rhs: BambuserPlayerSDK.PlayerUIConfiguration) -> Swift.Bool
@@ -605,7 +617,7 @@ extension BambuserPlayerSDK.ShowStatus {
   }
 }
 extension UIKit.UIFont.Weight : Swift.Decodable {
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public protocol TrackingEvent {
   var event: BambuserPlayerSDK.TrackingEventType { get }

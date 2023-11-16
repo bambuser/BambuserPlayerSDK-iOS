@@ -143,6 +143,7 @@ struct SettingsListSection: View {
     var uiOverlaysSection: some View {
         Section(header: Text("UI Overlays")) {
             toggle(.ui, "All UI", $settings.allUI)
+            toggle(.number, "Show number of viewers", $settings.showNumberOfViewers)
             toggle(.chat, "Show chat overlay", $settings.chatOverlay)
             toggle(.heart, "Show emoji overlay", $settings.emojiOverlay)
             toggle(.bag, "Show product list", $settings.productList)

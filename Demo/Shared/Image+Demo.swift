@@ -31,6 +31,7 @@ extension Image {
     static let subscribe = image("bell")
     static let theme = image("paintpalette")
     static let ui = image("rectangle.3.offgrid")
+    static let number = image("number")
     static let actionBar = image("ellipsis.rectangle")
     static let bag = image("bag")
     static let play = image("play.circle")

@@ -97,6 +97,7 @@ There are two predefined UI configurations you can choose from if you do not wan
 This config specifies the following UI configurations:
 
 * `allUi` - The visibility of all UI in the player, by default `.visible`
+* `showNumberOfViewers` - The visibility of the number of viewers label, by default `.visible`
 * `closeButton` - The visibility of the close player button, by default `.visible`
 * `chatOverlay` - The visibility of the chat overlay, by default `.visible`
 * `chatInputField` - The visibility of the chat text input field, by default `.visible`

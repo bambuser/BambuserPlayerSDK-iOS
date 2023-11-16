@@ -53,6 +53,7 @@ class DemoSettings: ObservableObject {
     @AppStorage("shouldRestorePiPAutomatically") var shouldRestorePiPAutomatically = true
 
     @Published var allUI = true
+    @Published var showNumberOfViewers = true
     @Published var chatOverlay = true
     @Published var emojiOverlay = true
     @Published var productList = true
@@ -103,6 +104,7 @@ private extension DemoSettings {
         isPiPEnabled = configuration.pipConfig.isEnabled
         hideUiOnPip = configuration.pipConfig.hideUiOnPip
         allUI = configuration.uiConfig.allUI == .visible
+        showNumberOfViewers = configuration.uiConfig.showNumberOfViewers == .visible
         chatOverlay = configuration.uiConfig.chatOverlay == .visible
         emojiOverlay = configuration.uiConfig.emojiOverlay == .visible
         productList = configuration.uiConfig.productList == .visible
@@ -127,6 +129,7 @@ private extension DemoSettings {
         addListener(value: $isPiPEnabled, at: \.pipConfig.isEnabled)
         addListener(value: $hideUiOnPip, at: \.pipConfig.hideUiOnPip)
         addListener(value: $allUI, at: \.uiConfig.allUI)
+        addListener(value: $showNumberOfViewers, at: \.uiConfig.showNumberOfViewers)
         addListener(value: $chatOverlay, at: \.uiConfig.chatOverlay)
         addListener(value: $emojiOverlay, at: \.uiConfig.emojiOverlay)
         addListener(value: $productList, at: \.uiConfig.productList)
