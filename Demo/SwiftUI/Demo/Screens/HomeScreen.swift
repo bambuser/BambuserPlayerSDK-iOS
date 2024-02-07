@@ -28,6 +28,7 @@ struct HomeScreen: View {
         NavigationView {
             List {
                 playerSection
+                hostCartSection
                 SettingsListSection(playerIsVisible: cover.isActive || sheet.isActive || playerPresentedTroughNavigation)
             }
             .navigationTitle("Demo")
@@ -50,6 +51,16 @@ struct HomeScreen: View {
 
 
 // MARK: - Views
+
+private extension HomeScreen {
+    var hostCartSection: some View {
+        Section(header: Text("In-App Cart")) {
+            NavigationLink(destination: HostInAppCartView()) {
+                Text("Open Host Application In-App Cart")
+            }
+        }
+    }
+}
 
 private extension HomeScreen {
     

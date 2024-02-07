@@ -44,6 +44,7 @@ extension Image {
     static let automatic = image("arrow.triangle.2.circlepath")
     static let timestamp = image("clock")
     static let productList = image("rectangle.grid.1x2")
+    static let shippingBox = image("shippingbox")
 }
 
 private extension Image {

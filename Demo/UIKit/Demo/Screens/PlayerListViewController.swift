@@ -162,7 +162,10 @@ extension PlayerListViewController: UITableViewDataSource {
             showId: showId,
             environment: settings.environment,
             playerConfiguration: playerConfig,
-            context: playerStates[index].context
+            context: settings.playerContext,
+            productDetailsDataSource: settings.cartService,
+            playerCartDataSource: settings.cartService,
+            playerCartDelegate: settings.cartService
         )
         cell.onPlayerEvent = { [weak self, weak cell] event in
             guard
@@ -223,17 +226,20 @@ private extension PlayerListViewController {
     }
         
     func saveCalendarEvent(in event: CalendarEvent) {
-        event.saveToCalendar { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure: UIAlertController.show(
-                title: "Error",
-                message: "Failed to save calendar event.",
-                from: self)
-            case .success: UIAlertController.show(
-                title: "Success",
-                message: "Event was added to calendar at \(event.startDate).",
-                from: self)
+        Task {
+            do {
+                try await event.save()
+                let date = await event.startDate
+                
+                UIAlertController.show(
+                    title: "Success",
+                    message: "Event was added to calendar at \(date).",
+                    from: self)
+            } catch {
+                UIAlertController.show(
+                    title: "Error",
+                    message: "Failed to save calendar event.",
+                    from: self)
             }
         }
     }

@@ -24,6 +24,8 @@ class DemoSettings: ObservableObject {
         }
 
         addListeners()
+
+        cartService.mockedProduct = mockedProduct
     }
     
     // MARK: - Localization
@@ -44,7 +46,8 @@ class DemoSettings: ObservableObject {
 
     @Published private(set) var playerConfiguration: PlayerConfiguration
     var playerContext = BambuserPlayerContext()
-    
+    var cartService = CartService()
+
     // MARK: - Settings
     
     @Published var isPiPAutomatic = true
@@ -68,6 +71,9 @@ class DemoSettings: ObservableObject {
     @Published var productsOnCurtain = true
     @Published var showPDPOnProductTap = true
     @Published var productPlayButton = true
+    @AppStorage("MockedProduct") var mockedProduct: MockedProduct = .none {
+        didSet { cartService.mockedProduct = mockedProduct }
+    }
 
     // MARK: - Cancellables
 

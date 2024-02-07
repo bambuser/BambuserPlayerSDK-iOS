@@ -195,6 +195,15 @@ struct SettingsListSection: View {
             toggle(.product, "Open PDP on product tap", $settings.showPDPOnProductTap)
             toggle(.bag, "Show products on curtain", $settings.productsOnCurtain)
             toggle(.timestamp, "Show product play button", $settings.productPlayButton)
+            picker(
+                .shippingBox,
+                "Mocked product",
+                options: MockedProduct.allCases.map { $0.rawValue },
+                selection: .init(
+                    get: { settings.mockedProduct.rawValue },
+                    set: { settings.mockedProduct = .init(rawValue: $0) ?? MockedProduct.none }
+                )
+            )
         }
     }
 }

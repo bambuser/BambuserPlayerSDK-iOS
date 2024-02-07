@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E0D15F7415BB9C1F4D6289 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5C6915F5DBF39762645F1 /* CartService.swift */; };
 		062B9D09DCC33FDE3FE867B0 /* HomeViewController+LoadCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FAC95BF9E06F725607B9FE /* HomeViewController+LoadCells.swift */; };
 		08DC42E52A00865907A3B048 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20DF6120A878DEDAC471C6C /* PlayerViewController.swift */; };
 		0F888A1D97FE68EF5AAA384C /* CustomWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06C1E96AF750D1778EB22E /* CustomWebViewController.swift */; };
@@ -15,20 +16,24 @@
 		2D56C5D9861652E59187E57C /* HomePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9292A0BF7511E4BE401F6 /* HomePickerCell.swift */; };
 		2FE34AACB313FD0FC392A42A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30BA7271EB3F3F6BFA2E807 /* Assets.xcassets */; };
 		425D9998630E8144C125331F /* HomeNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3951239A80D22DC3F8B3F39 /* HomeNormalCell.swift */; };
+		4D5A1E01FA48CB9F53A6F0E7 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FCDEB44A74E73994BF8F7A /* CartItemCell.swift */; };
 		5044B81C313244890CBC858E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378F56EA691369E87326FE0 /* SceneDelegate.swift */; };
 		52789CA03680511A17054FFD /* HomeToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6E5947E88DEBB1AB8B2F38 /* HomeToggleCell.swift */; };
 		60923E284834D6AC291D419E /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB89B73F7B95775902F43206 /* Collection+Safe.swift */; };
 		69E2A7B09392FE028707F375 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AADA62A8520EB639C42695 /* PlayerListViewController.swift */; };
 		72EC620714C7B58F489D5911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81DB88EBFC3A0281AF374DC /* LaunchScreen.storyboard */; };
+		73A18BAFED0734C27DA24B32 /* MockedProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9321404FE4933C38FC4A07A /* MockedProducts.swift */; };
 		76A30A9C42E56AC680CD49AC /* HomeTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741A2C213F04B3FA6CA581A /* HomeTextFieldCell.swift */; };
 		792F697C93187D8BD3C8A876 /* HomeDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D8D4ECEFF98E61EDCB01F /* HomeDatePickerCell.swift */; };
 		8E59EBF1A28CA8193C6DEA50 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6387248B8DA2229A818AD96 /* MainNavigationController.swift */; };
 		95D81D3D4ECDA09EFDFE8638 /* SelectableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65329704FC0929DEF22A0A73 /* SelectableEnvironment.swift */; };
 		9683BF1043EB33466CA82D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617D87673D30D51B714DC70 /* AppDelegate.swift */; };
 		A925CFBEF71340C13D4A1297 /* DemoSettings+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C79B888893FCC2C6F95FB /* DemoSettings+Private.swift */; };
+		B8E0811F6D435BDF47BD3CA1 /* HostInAppCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B9715CB64A6B340C3EE3F /* HostInAppCartViewController.swift */; };
 		BD1CDFD7811F34F1C4430335 /* DemoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C779573369599FB80BF580 /* DemoSettings.swift */; };
 		C96594216351D664597DBE11 /* BambuserPlayerSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 71D00C2FAC63069383B01E68 /* BambuserPlayerSDK */; };
 		D4CB27E83DF2DDFE0A485CC4 /* Image+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD084211FFF077F358FE461 /* Image+Demo.swift */; };
+		DB3F6469CA75A36C9156D375 /* CartItemCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A986C182799448FF403D79E7 /* CartItemCellModel.swift */; };
 		E19E406CE754DE246BCDA035 /* HomeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8286EE2FE89189DBBE3BA27 /* HomeCellViewModel.swift */; };
 		EBE8F27E251B54D216B89D3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923EBCDC6D9C7D8E5FDE895 /* HomeViewController.swift */; };
 		F0C5CB3785089C56140A9ED8 /* UIImage+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589CDCE4DDE52D2BD83F9984 /* UIImage+Demo.swift */; };
@@ -42,9 +47,12 @@
 		34C9292A0BF7511E4BE401F6 /* HomePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePickerCell.swift; sourceTree = "<group>"; };
 		3737B9B4F5F45CB2DCF4ACDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A226E443F31E591F7687A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		40FCDEB44A74E73994BF8F7A /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		522D8D4ECEFF98E61EDCB01F /* HomeDatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatePickerCell.swift; sourceTree = "<group>"; };
 		589CDCE4DDE52D2BD83F9984 /* UIImage+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Demo.swift"; sourceTree = "<group>"; };
 		5923EBCDC6D9C7D8E5FDE895 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5FA5C6915F5DBF39762645F1 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
+		617B9715CB64A6B340C3EE3F /* HostInAppCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostInAppCartViewController.swift; sourceTree = "<group>"; };
 		65329704FC0929DEF22A0A73 /* SelectableEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableEnvironment.swift; sourceTree = "<group>"; };
 		7A7C79B888893FCC2C6F95FB /* DemoSettings+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DemoSettings+Private.swift"; sourceTree = "<group>"; };
 		7EC4FD8CF1DBFB0926CA9CA0 /* HomeCenteredImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCenteredImageCell.swift; sourceTree = "<group>"; };
@@ -54,6 +62,7 @@
 		A383F70A9AB892DA73D5FD0F /* UIViewController+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Demo.swift"; sourceTree = "<group>"; };
 		A722861744F6E3CE661793D0 /* Demo-UIKit.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Demo-UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A741A2C213F04B3FA6CA581A /* HomeTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTextFieldCell.swift; sourceTree = "<group>"; };
+		A986C182799448FF403D79E7 /* CartItemCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCellModel.swift; sourceTree = "<group>"; };
 		B8286EE2FE89189DBBE3BA27 /* HomeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewModel.swift; sourceTree = "<group>"; };
 		BF946914A24226107B665396 /* DemoPlayerEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPlayerEventHandler.swift; sourceTree = "<group>"; };
 		C4C779573369599FB80BF580 /* DemoSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSettings.swift; sourceTree = "<group>"; };
@@ -67,6 +76,7 @@
 		EB89B73F7B95775902F43206 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		F20DF6120A878DEDAC471C6C /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		F3951239A80D22DC3F8B3F39 /* HomeNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNormalCell.swift; sourceTree = "<group>"; };
+		F9321404FE4933C38FC4A07A /* MockedProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedProducts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 				65329704FC0929DEF22A0A73 /* SelectableEnvironment.swift */,
 				589CDCE4DDE52D2BD83F9984 /* UIImage+Demo.swift */,
 				A383F70A9AB892DA73D5FD0F /* UIViewController+Demo.swift */,
+				EF3F4BE97FA90BFEC215D94D /* Cart integration */,
 			);
 			name = Shared;
 			path = ../Shared;
@@ -125,8 +136,11 @@
 		B201AA53ADBEBD358F4C327C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				40FCDEB44A74E73994BF8F7A /* CartItemCell.swift */,
+				A986C182799448FF403D79E7 /* CartItemCellModel.swift */,
 				5923EBCDC6D9C7D8E5FDE895 /* HomeViewController.swift */,
 				D1FAC95BF9E06F725607B9FE /* HomeViewController+LoadCells.swift */,
+				617B9715CB64A6B340C3EE3F /* HostInAppCartViewController.swift */,
 				D9AADA62A8520EB639C42695 /* PlayerListViewController.swift */,
 				F20DF6120A878DEDAC471C6C /* PlayerViewController.swift */,
 			);
@@ -165,6 +179,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		EF3F4BE97FA90BFEC215D94D /* Cart integration */ = {
+			isa = PBXGroup;
+			children = (
+				5FA5C6915F5DBF39762645F1 /* CartService.swift */,
+				F9321404FE4933C38FC4A07A /* MockedProducts.swift */,
+			);
+			path = "Cart integration";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,7 +217,8 @@
 		5533C1BE5094A04FCE853B33 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					02D0AFFE8989B9D70265A1EF = {
 						DevelopmentTeam = U39FKA38DT;
@@ -207,7 +231,7 @@
 				};
 			};
 			buildConfigurationList = 388F02421550F69BF7947B85 /* Build configuration list for PBXProject "Demo" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -245,6 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9683BF1043EB33466CA82D35 /* AppDelegate.swift in Sources */,
+				4D5A1E01FA48CB9F53A6F0E7 /* CartItemCell.swift in Sources */,
+				DB3F6469CA75A36C9156D375 /* CartItemCellModel.swift in Sources */,
+				04E0D15F7415BB9C1F4D6289 /* CartService.swift in Sources */,
 				60923E284834D6AC291D419E /* Collection+Safe.swift in Sources */,
 				16C2DE46D324BBD95BC1D501 /* CustomWebView.swift in Sources */,
 				0F888A1D97FE68EF5AAA384C /* CustomWebViewController.swift in Sources */,
@@ -260,8 +287,10 @@
 				52789CA03680511A17054FFD /* HomeToggleCell.swift in Sources */,
 				062B9D09DCC33FDE3FE867B0 /* HomeViewController+LoadCells.swift in Sources */,
 				EBE8F27E251B54D216B89D3E /* HomeViewController.swift in Sources */,
+				B8E0811F6D435BDF47BD3CA1 /* HostInAppCartViewController.swift in Sources */,
 				D4CB27E83DF2DDFE0A485CC4 /* Image+Demo.swift in Sources */,
 				8E59EBF1A28CA8193C6DEA50 /* MainNavigationController.swift in Sources */,
+				73A18BAFED0734C27DA24B32 /* MockedProducts.swift in Sources */,
 				F822B37481DAF7D4AF6F17CA /* PlayerListCell.swift in Sources */,
 				69E2A7B09392FE028707F375 /* PlayerListViewController.swift in Sources */,
 				08DC42E52A00865907A3B048 /* PlayerViewController.swift in Sources */,
@@ -295,7 +324,7 @@
 				DEVELOPMENT_TEAM = U39FKA38DT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,7 +399,7 @@
 				DEVELOPMENT_TEAM = U39FKA38DT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

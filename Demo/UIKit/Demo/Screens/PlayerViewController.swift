@@ -33,6 +33,9 @@ class PlayerViewController: BambuserPlayerViewController, DemoPlayerEventHandler
             environment: settings.environment,
             config: settings.playerConfiguration,
             context: settings.playerContext,
+            productDetailsDataSource: settings.cartService,
+            playerCartDataSource: settings.cartService,
+            playerCartDelegate: settings.cartService,
             handlePlayerEvent: { event in
                 eventHandler?(event)
             }
@@ -154,17 +157,20 @@ extension PlayerViewController {
     }
     
     func saveCalendarEvent(in event: CalendarEvent) {
-        event.saveToCalendar { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure: UIAlertController.show(
-                title: "Error",
-                message: "Failed to save calendar event.",
-                from: self)
-            case .success: UIAlertController.show(
-                title: "Success",
-                message: "Event was added to calendar at \(event.startDate).",
-                from: self)
+        Task {
+            do {
+                try await event.save()
+                let date = await event.startDate
+                
+                UIAlertController.show(
+                    title: "Success",
+                    message: "Event was added to calendar at \(date).",
+                    from: self)
+            } catch {
+                UIAlertController.show(
+                    title: "Error",
+                    message: "Failed to save calendar event.",
+                    from: self)
             }
         }
     }

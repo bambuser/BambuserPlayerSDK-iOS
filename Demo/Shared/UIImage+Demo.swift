@@ -40,6 +40,7 @@ extension UIImage {
     static let server = image("server.rack")
     static let otherEnvironment = image("circle.dotted")
     static let timestamp = image("clock")
+    static let shippingBox = image("shippingbox")
 }
 
 private extension UIImage {

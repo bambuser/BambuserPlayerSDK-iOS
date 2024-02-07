@@ -12,6 +12,7 @@ extension HomeViewController {
     func updateHeaderTitles() {
         headerTitles = [
             "Player",
+            "In-App Cart",
             "Localization",
             "Configuration",
             settings.automaticallyLoadNextShow ? "Upcoming shows" : nil,

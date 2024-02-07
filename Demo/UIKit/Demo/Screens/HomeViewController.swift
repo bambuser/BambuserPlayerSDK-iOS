@@ -118,6 +118,16 @@ class HomeViewController: UITableViewController {
             onValueChanged: nil))
 
     // MARK: - Section 1
+    
+    private lazy var showHostInAppCart = HomeNormalCell(
+        item: HomeCellViewModel(
+            title: "Open Host In-App Cart",
+            image: .bag,
+            value: nil,
+            accessoryType: .disclosureIndicator,
+            onValueChanged: nil))
+
+    // MARK: - Section 2
 
     private lazy var preferredLocaleCell = HomeTextFieldCell(
         item: HomeCellViewModel(
@@ -129,7 +139,7 @@ class HomeViewController: UITableViewController {
                 self.preferredLocaleIdentifier = $0
             })
     
-    // MARK: - Section 2
+    // MARK: - Section 3
 
     private var showIdCell: HomeTextFieldCell {
         HomeTextFieldCell(
@@ -351,6 +361,16 @@ class HomeViewController: UITableViewController {
             value: settings.productPlayButton) {
             self.settings.productPlayButton = $0
         })
+
+    private lazy var mockedProductCell = HomePickerCell(
+        item: .init(
+            title: "Mocked product",
+            image: .shippingBox,
+            value: MockedProduct.none.rawValue,
+            onValueChanged: { newValue in
+                self.settings.mockedProduct = .init(rawValue: newValue) ?? MockedProduct.none
+            }),
+        options: MockedProduct.allCases.map { $0.rawValue } )
 }
 
 // MARK: - Load Cells
@@ -365,6 +385,7 @@ extension HomeViewController {
                 
         staticCells = [
             [showPlayerCell, showPlayerAsSheetCell, fullScreenCoverCell, showMultiplePlayers],
+            [showHostInAppCart],
             [preferredLocaleCell],
             [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
             upcomingShowsSection,
@@ -372,7 +393,7 @@ extension HomeViewController {
             [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell, productListCell, productListStyleCell, productListStyleDateCell]
                 .compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
-            [pdpCell, productsCurtainCell, productPlayCell]
+            [pdpCell, productsCurtainCell, productPlayCell, mockedProductCell]
         ].compactMap({ $0 })
 
         tableView.reloadData()
@@ -394,6 +415,10 @@ extension HomeViewController {
             }
         }
         
+        if indexPath.section == 1 {
+            navigateToInAppCart()
+        }
+
         // Upcoming shows section. Click on '+' button
         if settings.automaticallyLoadNextShow,
            indexPath.section == 3,
@@ -454,10 +479,18 @@ private extension HomeViewController {
         return viewController
     }
     
+    var inAppCartViewController: HostInAppCartViewController {
+        HostInAppCartViewController(settings: settings)
+    }
+
     func showPlayer() {
         navigationController?.pushViewController(playerController, animated: true)
     }
     
+    func navigateToInAppCart() {
+        navigationController?.pushViewController(inAppCartViewController, animated: true)
+    }
+
     func showPlayerAsSheet(completion: (() -> Void)? = nil) {
         present(playerController, animated: true, completion: completion)
     }

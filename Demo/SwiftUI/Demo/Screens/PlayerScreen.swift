@@ -113,7 +113,10 @@ private extension PlayerScreen {
             showId: settings.showId,
             environment: settings.environment,
             config: settings.playerConfiguration,
-            context: settings.playerContext,
+            context: settings.playerContext, 
+            productDetailsDataSource: settings.cartService,
+            playerCartDataSource: settings.cartService,
+            playerCartDelegate: settings.cartService,
             handlePlayerEvent: handlePlayerEvent
         )
     }
@@ -177,15 +180,17 @@ extension PlayerScreen {
     }
 
     func saveCalendarEvent(in event: CalendarEvent) {
-        event.saveToCalendar { result in
-            switch result {
-            case .success:
+        Task {
+            do {
+                try await event.save()
+                let date = await event.startDate
+                
                 let successAlert = Alert(
                     title: Text("Success"),
-                    message: Text("Event was added to calendar at \(event.startDate).")
+                    message: Text("Event was added to calendar at \(date).")
                 )
                 alert.present(successAlert)
-            case let .failure(error):
+            } catch {
                 let errorAlert = Alert(
                     title: Text("Error"),
                     message: Text(error.localizedDescription)
