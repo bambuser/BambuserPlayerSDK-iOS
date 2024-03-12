@@ -12,22 +12,15 @@ let package = Package(
             name: "BambuserPlayerSDK",
             targets: ["BambuserPlayerSDK", "BambuserPlayerBundle"])
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/firebase/firebase-ios-sdk.git", 
-            .upToNextMajor(from: "10.7.0")
-        )
-    ],
+    dependencies: [],
     targets: [
         .binaryTarget(
             name: "BambuserPlayerSDK",
-            path: "Sources/BambuserPlayerSDK.xcframework"),
+            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK.xcframework.zip",
+            checksum: "9b3d96be00843f55e56289b12159f57e6068fde596614785ce7d310115b36071"
+        ),
         .target(
             name: "BambuserPlayerBundle",
-            dependencies: [
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
-            ],
             resources: [
                 .process("Resources/Localization/LocalizedStrings-English.json")
             ]

@@ -239,7 +239,7 @@ extension PlayerScreen {
         var errorText = "Unknown error"
         switch error {
         case .showInitialization:
-            errorText = "Can't start the show. Please check your 'Show Id'."
+            errorText = "Can't open the show. Please check your 'Show Id' or 'Environment'."
         case .playerInitialization(let error):
             errorText = error?.localizedDescription ?? "-"
         case .unknown(let error):

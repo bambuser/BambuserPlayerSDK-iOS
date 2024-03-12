@@ -390,8 +390,8 @@ extension HomeViewController {
             [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
             upcomingShowsSection,
             [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
-            [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell, productListCell, productListStyleCell, productListStyleDateCell]
-                .compactMap({ $0 }),
+            [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell,
+             productListCell, productListStyleCell, productListStyleDateCell].compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
             [pdpCell, productsCurtainCell, productPlayCell, mockedProductCell]
         ].compactMap({ $0 })

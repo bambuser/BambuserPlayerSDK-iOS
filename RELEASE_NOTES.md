@@ -1,5 +1,16 @@
 # Release Notes
 
+# 1.4.0
+### 💡 Behavior changes
+* Remove Firebase SDK dependency
+
+### Improvements
+* Fix the crash when player was initialized with a non existing show id
+* Fix spacing issue in the Player view
+* General stability improvements
+* Fix sending logic of 'Show/Hide Cart' Tracking event
+* Add 'Add to Cart' Tracking event
+
 ## 1.3.0
 ### ✨ New features:
 * Cart integration

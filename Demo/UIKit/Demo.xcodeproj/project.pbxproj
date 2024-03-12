@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -241,7 +241,6 @@
 			mainGroup = E5BB6DC2E977B912CC1AF702;
 			packageReferences = (
 				90018CF6A7CA593E8C78E833 /* XCRemoteSwiftPackageReference "BambuserPlayerSDK-iOS" */,
-				E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -501,15 +500,7 @@
 			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = exactVersion;
-				version = 1.2.2;
-			};
-		};
-		E97FEE8F125ACC19BE7BCD45 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = exactVersion;
-				version = 10.7.0;
+				version = 1.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

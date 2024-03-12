@@ -41,6 +41,7 @@ extension UIImage {
     static let otherEnvironment = image("circle.dotted")
     static let timestamp = image("clock")
     static let shippingBox = image("shippingbox")
+    static let captions = image("captions.bubble")
 }
 
 private extension UIImage {

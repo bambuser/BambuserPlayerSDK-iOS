@@ -38,7 +38,7 @@ After installing the SDK, you must import `BambuserPlayerSDK` in every file wher
 
 ### CocoaPods
 
-Add ```pod 'BambuserPlayerSDK'``` to your Podfile.
+This SDK does not support Cocoapods.
 
 ### Carthages
 

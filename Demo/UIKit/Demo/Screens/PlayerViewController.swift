@@ -261,7 +261,7 @@ extension PlayerViewController {
         UIAlertController.show(
             title: "Error",
             message: error?.localizedDescription ??
-            "Can't start the show. Please check your 'Show Id'.",
+            "Can't open the show. Please check your 'Show Id' or 'Environment'.",
             from: self,
             with: { [weak self] _ in
                 if closePlayerOnAction {

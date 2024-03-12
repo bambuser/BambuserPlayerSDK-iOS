@@ -45,6 +45,7 @@ extension Image {
     static let timestamp = image("clock")
     static let productList = image("rectangle.grid.1x2")
     static let shippingBox = image("shippingbox")
+    static let captions = image("captions.bubble")
 }
 
 private extension Image {
