@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -10,17 +10,27 @@ let package = Package(
     products: [
         .library(
             name: "BambuserPlayerSDK",
-            targets: ["BambuserPlayerSDK", "BambuserPlayerBundle"])
+            targets: ["BambuserPlayerSDK", "BambuserPlayerBundle"]
+        )
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/firebase/firebase-ios-sdk.git",
+            from: "10.18.0"
+        )
+    ],
     targets: [
         .binaryTarget(
             name: "BambuserPlayerSDK",
-            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK.xcframework.zip",
-            checksum: "9b3d96be00843f55e56289b12159f57e6068fde596614785ce7d310115b36071"
+            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK-1.4.1-release.xcframework.zip",
+            checksum: "c0684af4c2ae161402b4e7cb92265e458fd444116ae54727541a03ef11a5f67f"
         ),
         .target(
             name: "BambuserPlayerBundle",
+            dependencies: [
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
+            ],
             resources: [
                 .process("Resources/Localization/LocalizedStrings-English.json")
             ]

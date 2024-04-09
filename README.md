@@ -23,7 +23,6 @@ The LVS player can be configured to great extent and also lets you listen for pl
 `BambuserPlayerSDK` supports iOS and iPadOS 14+ and can be used with `UIKit` and `SwiftUI`.
 
 
-
 ## Installation
 
 Requires Xcode 14.0 or newer.
@@ -38,13 +37,21 @@ After installing the SDK, you must import `BambuserPlayerSDK` in every file wher
 
 ### CocoaPods
 
-This SDK does not support Cocoapods.
+This SDK does not support CocoaPods.
 
 ### Carthages
 
 This SDK does not support Carthage.
 
 
+## Prerequisite
+
+This SDK requires [Firebase SDK](https://github.com/firebase/firebase-ios-sdk) as dependency and needs to be added to your project.
+
+If you're project doesn't have it already have it as a dependency, it will be added along with `BambuserPlayerSDK` through SPM, otherwise, it will use existing Firebase SDK. 
+
+Minimum required version of `Firebase SDK` is [1.18.0](https://github.com/firebase/firebase-ios-sdk/tree/10.18.0).
+If you're project is using an older version, you need to update it in order to use `BambuserPlayerSDK`.
 
 ## Getting started
 

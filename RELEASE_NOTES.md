@@ -1,5 +1,13 @@
 # Release Notes
 
+# 1.4.1
+### 💡 Behavior changes
+* Add Firebase as dynamic dependency - Check README for more information
+
+### Improvements
+* Add product listing
+* Internal code cleanup.
+
 # 1.4.0
 ### 💡 Behavior changes
 * Remove Firebase SDK dependency
