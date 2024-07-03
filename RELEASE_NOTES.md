@@ -1,5 +1,15 @@
 # Release Notes
 
+# 1.5.0
+### ✨ New Features:
+* **Custom Views**: Users can now utilize custom `Cart` and `Product Detail` views.
+
+### Improvements:
+* **UI Enhancements**: Resolved UI issues in the Player view for a smoother user experience.
+* **Stability & Performance**: General stability and performance improvements.
+* **Bug Fixes**: Various bug fixes to enhance overall functionality.
+
+
 # 1.4.1
 ### 💡 Behavior changes
 * Add Firebase as dynamic dependency - Check README for more information

@@ -27,7 +27,7 @@ final class PlayerListCell: UITableViewCell {
             environment: viewModel.environment,
             config: viewModel.playerConfiguration,
             context: viewModel.context,
-            productDetailsDataSource: viewModel.productDetailsDataSource,
+            playerProductDataSource: viewModel.playerProductDataSource,
             playerCartDataSource: viewModel.playerCartDataSource,
             playerCartDelegate: viewModel.playerCartDelegate,
             handlePlayerEvent: onPlayerEvent
@@ -51,7 +51,7 @@ extension PlayerListCell {
         var environment: BambuserEnvironment?
         var playerConfiguration: PlayerConfiguration
         var context: BambuserPlayerContext?
-        var productDetailsDataSource: ProductDetailsDataSource?
+        var playerProductDataSource: PlayerProductDataSource?
         var playerCartDataSource: PlayerCartDataSource?
         var playerCartDelegate: PlayerCartDelegate?
     }

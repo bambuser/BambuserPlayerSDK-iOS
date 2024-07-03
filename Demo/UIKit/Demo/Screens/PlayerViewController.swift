@@ -33,7 +33,7 @@ class PlayerViewController: BambuserPlayerViewController, DemoPlayerEventHandler
             environment: settings.environment,
             config: settings.playerConfiguration,
             context: settings.playerContext,
-            productDetailsDataSource: settings.cartService,
+            playerProductDataSource: settings.cartService,
             playerCartDataSource: settings.cartService,
             playerCartDelegate: settings.cartService,
             handlePlayerEvent: { event in
@@ -196,8 +196,14 @@ extension PlayerViewController {
         UIApplication.shared.open(url)
     }
 
-    func openProductDetails(_ product: BambuserPlayerEvent.Product) {
-        guard let url = product.publicUrl else {
+    func showCart() {
+        let cartViewController = CartViewController()
+        cartViewController.modalPresentationStyle = .formSheet
+        present(cartViewController, animated: true, completion: nil)
+    }
+
+    func openProductDetails(_ product: ProductProtocol) {
+        guard let url = product.base?.url else {
             return
         }
         
@@ -252,6 +258,8 @@ extension PlayerViewController {
             handleShowError(nil, closePlayerOnAction: true)
         case .playerInitialization(let error):
             handleShowError(error, closePlayerOnAction: true)
+        case .openedUrlIsInvalid:
+            handleShowError(error, closePlayerOnAction: true)
         case .unknown(let error):
             handleShowError(error)
         }
@@ -281,7 +289,6 @@ private extension PlayerViewController {
         case .playerFailed(let error): handlePlayerError(error)
         case .openTosOrPpUrl(let url): openExternalUrl(url)
         case .openUrlFromChat(let url): openExternalUrl(url)
-        case .openProduct(let product): openProductDetails(product)
         case .openShareShowSheet(let url): shareUrl(url: url)
         case .close: dismiss()
         case .pictureInPictureStateChanged(action: let action):
@@ -291,6 +298,8 @@ private extension PlayerViewController {
             print("Product was highlighted: \(product.title ?? "untitled product")")
         case .playButtonTapped: showIsPlaying = true
         case .pauseButtonTapped: showIsPlaying = false
+        case .openProduct(let product): openProductDetails(product)
+        case .openCart: showCart()
         default: print("Unhandled Event: \(event)")
         }
     }

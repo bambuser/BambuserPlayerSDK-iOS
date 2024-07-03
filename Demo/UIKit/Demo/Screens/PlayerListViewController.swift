@@ -163,7 +163,7 @@ extension PlayerListViewController: UITableViewDataSource {
             environment: settings.environment,
             playerConfiguration: playerConfig,
             context: settings.playerContext,
-            productDetailsDataSource: settings.cartService,
+            playerProductDataSource: settings.cartService,
             playerCartDataSource: settings.cartService,
             playerCartDelegate: settings.cartService
         )
@@ -193,9 +193,10 @@ private extension PlayerListViewController {
         case .playerFailed(let error): handlePlayerError(error)
         case .openTosOrPpUrl(let url): openExternalUrl(url)
         case .openUrlFromChat(let url): openExternalUrl(url)
-        case .openProduct(let product): openProductDetails(product)
         case .openShareShowSheet(let url): shareUrl(url: url)
         case .openCalendar(let info): saveCalendarEvent(in: info)
+        case .openProduct(let product): openProductDetails(product)
+        case .openCart: showCart()
         default: break
         }
     }
@@ -213,8 +214,8 @@ private extension PlayerListViewController {
         UIApplication.shared.open(url)
     }
 
-    func openProductDetails(_ product: BambuserPlayerEvent.Product) {
-        guard let url = product.publicUrl else {
+    func openProductDetails(_ product: ProductProtocol) {
+        guard let url = product.base?.url else {
             return
         }
         let webController = CustomWebViewController(url: url, isBeingPopped: {})
@@ -224,7 +225,13 @@ private extension PlayerListViewController {
             present(webController, animated: true)
         }
     }
-        
+
+    func showCart() {
+        let cartViewController = CartViewController()
+        cartViewController.modalPresentationStyle = .formSheet
+        present(cartViewController, animated: true, completion: nil)
+    }
+
     func saveCalendarEvent(in event: CalendarEvent) {
         Task {
             do {

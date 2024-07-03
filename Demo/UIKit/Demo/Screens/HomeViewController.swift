@@ -337,13 +337,21 @@ class HomeViewController: UITableViewController {
         })
     
     // MARK: - Curtain
-    
+
+    private lazy var cartCell = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Use built-in cart view",
+            image: .product,
+            value: settings.usePlayerCartView) {
+                self.settings.usePlayerCartView = $0
+            })
+
     private lazy var pdpCell = HomeToggleCell(
         item: HomeCellViewModel(
-            title: "Open PDP on product tap",
+            title: "Use built-in product view",
             image: .product,
-            value: settings.showPDPOnProductTap) {
-            self.settings.showPDPOnProductTap = $0
+            value: settings.usePlayerProductView) {
+            self.settings.usePlayerProductView = $0
         })
     
     private lazy var productsCurtainCell = HomeToggleCell(
@@ -393,7 +401,7 @@ extension HomeViewController {
             [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell,
              productListCell, productListStyleCell, productListStyleDateCell].compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
-            [pdpCell, productsCurtainCell, productPlayCell, mockedProductCell]
+            [cartCell, pdpCell, productsCurtainCell, productPlayCell, mockedProductCell]
         ].compactMap({ $0 })
 
         tableView.reloadData()

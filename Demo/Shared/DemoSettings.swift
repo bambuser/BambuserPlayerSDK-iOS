@@ -69,7 +69,8 @@ class DemoSettings: ObservableObject {
     @Published var chatInputField = true
     @Published var shareButton = true
     @Published var productsOnCurtain = true
-    @Published var showPDPOnProductTap = true
+    @Published var usePlayerCartView = true
+    @Published var usePlayerProductView = true
     @Published var productPlayButton = true
     @AppStorage("MockedProduct") var mockedProduct: MockedProduct = .none {
         didSet { cartService.mockedProduct = mockedProduct }
@@ -122,7 +123,8 @@ private extension DemoSettings {
         chatInputField = configuration.uiConfig.chatInputField == .visible
         shareButton = configuration.uiConfig.shareButton == .visible
         productsOnCurtain = configuration.uiConfig.productsOnEndCurtain == .visible
-        showPDPOnProductTap = configuration.uiConfig.showPDPOnProductTap
+        usePlayerCartView = configuration.uiConfig.usePlayerCartView
+        usePlayerProductView = configuration.uiConfig.usePlayerProductView
         productPlayButton = configuration.uiConfig.productPlayButton == .visible
     }
     
@@ -147,7 +149,8 @@ private extension DemoSettings {
         addListener(value: $chatInputField, at: \.uiConfig.chatInputField)
         addListener(value: $shareButton, at: \.uiConfig.shareButton)
         addListener(value: $productsOnCurtain, at: \.uiConfig.productsOnEndCurtain)
-        addListener(value: $showPDPOnProductTap, at: \.uiConfig.showPDPOnProductTap)
+        addListener(value: $usePlayerCartView, at: \.uiConfig.usePlayerCartView)
+        addListener(value: $usePlayerProductView, at: \.uiConfig.usePlayerProductView)
         addListener(value: $productPlayButton, at: \.uiConfig.productPlayButton)
     }
 

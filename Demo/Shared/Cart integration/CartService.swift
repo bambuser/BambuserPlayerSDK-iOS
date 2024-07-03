@@ -9,7 +9,7 @@
 import BambuserPlayerSDK
 import Combine
 
-final class CartService: PlayerCartDelegate, PlayerCartDataSource, ProductDetailsDataSource, ObservableObject {
+final class CartService: PlayerCartDelegate, PlayerCartDataSource, PlayerProductDataSource, ObservableObject {
 
     @Published var mockedProduct: MockedProduct = .none
 
@@ -35,7 +35,7 @@ final class CartService: PlayerCartDelegate, PlayerCartDataSource, ProductDetail
         productsInCart[index] = item
     }
 
-    func productDetails(
+    func productHydration(
         for product: Product.Request
     ) async throws -> Product.Hydrated? {
         try await Task.sleep(nanoseconds: 5_000_000_00) // 0.5 second mocked latency

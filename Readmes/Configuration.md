@@ -72,15 +72,17 @@ The event handler can send the following events:
 
 * `openTosOrPpUrl(let url)` - Triggered when the user taps a link to a terms-of-service or privacy-policy URL
 * `openUrlFromChat(let url)` - Triggered when the user taps a link in a chat message
-* `openProduct(let product)` - Triggered when the user taps a product when cart integration is not set up.
+* `openProduct(let product)` - Triggered when the user taps a product and `usePlayerProductView` is false.
 * `openShareShowSheet(let url)` - Triggered when the user taps a share button to share the current show.
-* `openCart` - Triggered when the user taps the cart icon
+* `openCart` - Triggered when the user taps the cart icon and `usePlayerCartView` is false.
+* `hideCart` - Triggered when the user dismisses the cart view.
 * `openCalendar(let calendarEvent)` - Triggered when the user taps the calendar icon the curtain before a show has started
 * `close` - Triggered when the user taps the close button.
 * `pictureInPictureStateChanged(action: let pipAction)` - Triggered when the state of picture-in-picture changes
 * `playButtonTapped` - Triggered when the user taps the play button
 * `pauseButtonTapped` - Triggered when the user taps the pause button
 * `recievedChatMessages(added: let addedMessages, removed: let removedMessages)` - Triggered when the player has displayed or removed new messages
+* `productAddedToCart(let product)` - Triggered when a product is added to the cart from the BambuserPlayer product detail page (PDP).
 * `sentChatMessage(let sentChatMessage)` - Triggered when the user sends a chat message
 * `productWasHighlighted(let product)` - Triggered when a new product was highlighted
 * `replay(let replayInfo)` - Triggered when the user replays the current show using the replay button on the end curtain.
@@ -114,6 +116,8 @@ This config specifies the following UI configurations:
 * `chatSize` - The relative size of the chat area. Width/height is in the range of 0...1. By default `nil`
 * `shareButton` - The visibility of the share button, by default `.visible`
 * `ignoreSystemInsets` - If it's enabled, the safe area and status bar insets are removed. By default `false`
+* `usePlayerCartView` - Whether the player should use the built-in Cart view. Default is `true`. If set to `false`, the `openCart` event will be triggered.
+* `usePlayerProductView` - Whether the player should use the built-in Product Details view. Default is `true`. If set to `false`, the `openProduct(Product.Base)` event will be triggered.
 
 
 ## PictureInPictureConfiguration

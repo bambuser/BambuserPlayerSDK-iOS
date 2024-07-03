@@ -192,7 +192,8 @@ struct SettingsListSection: View {
 
     var productsSection: some View {
         Section(header: Text("Products")) {
-            toggle(.product, "Open PDP on product tap", $settings.showPDPOnProductTap)
+            toggle(.product, "Use built-in cart view", $settings.usePlayerCartView)
+            toggle(.product, "Use built-in product view", $settings.usePlayerProductView)
             toggle(.bag, "Show products on curtain", $settings.productsOnCurtain)
             toggle(.timestamp, "Show product play button", $settings.productPlayButton)
             picker(
@@ -288,5 +289,6 @@ private extension SettingsListSection {
 struct ListSettingsSection_Previews: PreviewProvider {
     static var previews: some View {
         SettingsListSection(playerIsVisible: false)
+            .environmentObject(DemoSettings())
     }
 }

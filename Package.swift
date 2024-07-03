@@ -22,8 +22,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "BambuserPlayerSDK",
-            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK-1.4.1-release.xcframework.zip",
-            checksum: "c0684af4c2ae161402b4e7cb92265e458fd444116ae54727541a03ef11a5f67f"
+            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK-1.5.0-release.xcframework.zip",
+            checksum: "fd48509aa9210625625ce81f22880fa2202491de45dc098508b37e0ec8dfdeab"
         ),
         .target(
             name: "BambuserPlayerBundle",

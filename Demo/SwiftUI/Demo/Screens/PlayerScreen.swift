@@ -14,7 +14,8 @@ import BambuserPlayerSDK
  screen overlays the player with a demo-specific player menu.
  */
 struct PlayerScreen: View {
-    
+    @State private var showCart = false
+
     init(
         showCloseButton: Bool,
         openPdpInNavigationStack: Bool
@@ -64,6 +65,9 @@ struct PlayerScreen: View {
             AppDelegate.orientationLock = .all
             settings.loadNextShow()
         }
+        .sheet(isPresented: $showCart) {
+            CartView()
+        }
     }
     
     var pdpOverlay: some View {
@@ -89,6 +93,18 @@ struct PlayerScreen: View {
 
 private extension PlayerScreen {
     
+    struct CartView: View {
+        var body: some View {
+            VStack {
+                Spacer()
+                Text("Cart View")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+        }
+    }
+
     var menu: some View {
         PlayerMenu(
             isPipActive: .init(
@@ -114,7 +130,7 @@ private extension PlayerScreen {
             environment: settings.environment,
             config: settings.playerConfiguration,
             context: settings.playerContext, 
-            productDetailsDataSource: settings.cartService,
+            playerProductDataSource: settings.cartService,
             playerCartDataSource: settings.cartService,
             playerCartDelegate: settings.cartService,
             handlePlayerEvent: handlePlayerEvent
@@ -132,13 +148,22 @@ extension PlayerScreen {
         case let .playerFailed(error): handlePlayerError(error)
         case let .openTosOrPpUrl(url): openExternalUrl(url)
         case let .openUrlFromChat(url): openExternalUrl(url)
-        case let .openProduct(product): openProductDetails(product)
         case let .openShareShowSheet(url): openShareSheet(url)
         case .close: dismiss()
         case let .pictureInPictureStateChanged(action): handlePipStateChanged(action)
         case let .openCalendar(info): saveCalendarEvent(in: info)
         case .playButtonTapped: isShowPlaying = true
         case .pauseButtonTapped: isShowPlaying = false
+        case .openCart:
+            // Only triggers if `usePlayerCartView` == true
+            // Check `PlayerUIConfiguration` for more info
+            showCart = true
+        case let .openProduct(product):
+            // Only triggers if `usePlayerProductView` == true
+            // Check `PlayerUIConfiguration` for more info
+            openProductDetails(product)
+        case let .productAddedToCart(product):
+            print("Product added to cart - \(product)")
         default: print("Unhandled event: \(event)")
         }
     }
@@ -200,8 +225,8 @@ extension PlayerScreen {
         }
     }
         
-    func openProductDetails(_ product: BambuserPlayerEvent.Product) {
-        guard let url = product.publicUrl else {
+    func openProductDetails(_ product: ProductProtocol) {
+        guard let url = product.base?.url else {
             return
         }
 
@@ -242,6 +267,8 @@ extension PlayerScreen {
             errorText = "Can't open the show. Please check your 'Show Id' or 'Environment'."
         case .playerInitialization(let error):
             errorText = error?.localizedDescription ?? "-"
+        case .openedUrlIsInvalid:
+            errorText = error.localizedDescription
         case .unknown(let error):
             errorText = error?.localizedDescription ?? "-"
         }
@@ -283,5 +310,6 @@ struct PlayerScreen_Previews: PreviewProvider {
             showCloseButton: false,
             openPdpInNavigationStack: false
         )
+        .environmentObject(DemoSettings())
     }
 }

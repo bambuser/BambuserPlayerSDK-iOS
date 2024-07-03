@@ -72,4 +72,5 @@ struct HostInAppCartView: View {
 
 #Preview {
     HostInAppCartView()
+        .environmentObject(DemoSettings())
 }

@@ -26,6 +26,7 @@
 		6E7870038CF632C748282F0A /* DemoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9509B815C6B4EFD3011F997 /* DemoSettings.swift */; };
 		7F1E27EEDBA18C06CFEA865A /* BambuserPlayerSDK in Frameworks */ = {isa = PBXBuildFile; productRef = A28805C3C2718DF901D0CA19 /* BambuserPlayerSDK */; };
 		881EB3B5F9267A0EC8C5B11C /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FFD7FF5564C2D660AE14BA /* Collection+Safe.swift */; };
+		89887512A172136F1A61F597 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E075A78CDBEC8B08E66342F /* CartViewController.swift */; };
 		8B6A993889D31B1DD33E3958 /* PresentationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51B35DD467864E298639E7 /* PresentationContext.swift */; };
 		8C1C0AEFC5EBF490A03A313C /* HostInAppCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1CEA42D8F5C9760CCAD4D /* HostInAppCartViewModel.swift */; };
 		93E0AEF846543E6F64E44D6C /* FullScreenCoverContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CF391F7426599BF7F904A0 /* FullScreenCoverContext.swift */; };
@@ -63,6 +64,7 @@
 		37AF125C10B9A499B3C068C4 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		48A568C24B1BFE40A6F8A7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5C3C18E243DE2C96239413C5 /* Image+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Demo.swift"; sourceTree = "<group>"; };
+		5E075A78CDBEC8B08E66342F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		5F5381DE7C864434DE56C8F8 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 		60AE1E4C4BE8FDAA9BC119EF /* BambuserLogoBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambuserLogoBackground.swift; sourceTree = "<group>"; };
 		63A90E845FD3607F97FFE08C /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		3491C2C2B4875F7AB65254CC /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5E075A78CDBEC8B08E66342F /* CartViewController.swift */,
 				77FFD7FF5564C2D660AE14BA /* Collection+Safe.swift */,
 				0D9050FFE9999E1E79B5EAD0 /* CustomWebView.swift */,
 				6EC888E3EDD3DED48B3183E8 /* CustomWebViewController.swift */,
@@ -333,6 +336,7 @@
 				A6B982833B57073E0CF904F2 /* AppDelegate.swift in Sources */,
 				1AB3339A2F345EF0145AF091 /* BambuserLogoBackground.swift in Sources */,
 				9F99D346E70A97DC590B3950 /* CartService.swift in Sources */,
+				89887512A172136F1A61F597 /* CartViewController.swift in Sources */,
 				881EB3B5F9267A0EC8C5B11C /* Collection+Safe.swift in Sources */,
 				B1661EE1E5018AB90A4C43B8 /* CustomWebView.swift in Sources */,
 				A976D6765B40E23F68D4DD48 /* CustomWebViewController.swift in Sources */,
@@ -554,7 +558,7 @@
 			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 1.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

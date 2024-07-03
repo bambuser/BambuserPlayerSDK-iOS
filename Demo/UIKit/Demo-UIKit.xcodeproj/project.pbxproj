@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		28B44A59B20E1C8B83F7B0B8 /* DemoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5823EA64078CD8F6C0E78ED /* DemoSettings.swift */; };
 		35583643DC9D6A4F24E9A687 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD76A9E88AFBC5F0A2F2D0A2 /* CartItemCell.swift */; };
 		36DEBB54CD5F19905AED02E7 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BE7B7D97E9C1CCAA8104 /* PlayerViewController.swift */; };
+		3D3B8763A13F75D67D11C226 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588C0DD62E13D59FD442CA0 /* CartViewController.swift */; };
 		58B2C4AA1FD57B0D69720362 /* HomeDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5578CE9E13FA18BA73A595EA /* HomeDatePickerCell.swift */; };
 		5ADBB7E291B2B29C3230F679 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382AB50D11BFDA72B741D163 /* PlayerListViewController.swift */; };
 		67C96A013A451E17A922995E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7121D2A41D6DF30FAC847 /* MainNavigationController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		056C1C153F94809F905FD4CF /* HomeViewController+LoadCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+LoadCells.swift"; sourceTree = "<group>"; };
+		0588C0DD62E13D59FD442CA0 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		08DC3C34700E21CF68526C17 /* DemoPlayerEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPlayerEventHandler.swift; sourceTree = "<group>"; };
 		0C71735B512B2D06047171CD /* Image+Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Demo.swift"; sourceTree = "<group>"; };
 		19AA20B3143EF20724A825AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		3BF070B06906121BC395543B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0588C0DD62E13D59FD442CA0 /* CartViewController.swift */,
 				74AE7E3824C04C2460510246 /* Collection+Safe.swift */,
 				D5A3D8CD8A3668849AEC4530 /* CustomWebView.swift */,
 				362D49820710CE9D8F10A128 /* CustomWebViewController.swift */,
@@ -266,6 +269,7 @@
 				35583643DC9D6A4F24E9A687 /* CartItemCell.swift in Sources */,
 				73F843E248BF87CCC0148A03 /* CartItemCellModel.swift in Sources */,
 				1D1FDBFA6ACD865F52442B8B /* CartService.swift in Sources */,
+				3D3B8763A13F75D67D11C226 /* CartViewController.swift in Sources */,
 				07CAC37B2D854242B99E5E9B /* Collection+Safe.swift in Sources */,
 				1D6538DD756FCF7A33B2E537 /* CustomWebView.swift in Sources */,
 				8B191DAF51D8F44A24AF61B4 /* CustomWebViewController.swift in Sources */,
@@ -493,7 +497,7 @@
 			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 1.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
