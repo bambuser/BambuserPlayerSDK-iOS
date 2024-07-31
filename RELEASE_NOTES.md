@@ -1,5 +1,10 @@
 # Release Notes
 
+# 1.5.1
+### Improvements:
+* Resolved issues with dismissing the player view when Picture-in-Picture (PiP) mode is enabled.
+* Addressed the problem with the "ignore safe area" option in the UI configuration.
+
 # 1.5.0
 ### ✨ New Features:
 * **Custom Views**: Users can now utilize custom `Cart` and `Product Detail` views.

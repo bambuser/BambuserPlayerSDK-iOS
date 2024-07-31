@@ -215,6 +215,15 @@ class HomeViewController: UITableViewController {
     
     // MARK: - Section 4
     
+    private lazy var ignoreSafeAreas = HomeToggleCell(
+        item: HomeCellViewModel(
+            title: "Ignore safe areas",
+            image: .rectangle,
+            value: settings.ignoreSafeAreas
+        ) {
+            self.settings.ignoreSafeAreas = $0
+        })
+
     private lazy var allUiCell = HomeToggleCell(
         item: HomeCellViewModel(
             title: "All UI",
@@ -398,7 +407,7 @@ extension HomeViewController {
             [showIdCell, environmentCell, otherEnvCell, autoSwitchShowCell].compactMap({ $0 }),
             upcomingShowsSection,
             [pipEnabledCell, pipAutomaticCell, hideUiOnPipCell, pipRestoreAutomaticallyCell],
-            [allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell,
+            [ignoreSafeAreas, allUiCell, showNumberOfViewersCell, chatOverlayCell, emojiOverlayCell,
              productListCell, productListStyleCell, productListStyleDateCell].compactMap({ $0 }),
             [actionBarCell, emojiButtonCell, cartButtonCell, chatVisibilityButtonCell, chatInputFieldCell, shareButtonCell],
             [cartCell, pdpCell, productsCurtainCell, productPlayCell, mockedProductCell]

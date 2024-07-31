@@ -72,6 +72,7 @@ class DemoSettings: ObservableObject {
     @Published var usePlayerCartView = true
     @Published var usePlayerProductView = true
     @Published var productPlayButton = true
+    @Published var ignoreSafeAreas = true
     @AppStorage("MockedProduct") var mockedProduct: MockedProduct = .none {
         didSet { cartService.mockedProduct = mockedProduct }
     }
@@ -126,6 +127,7 @@ private extension DemoSettings {
         usePlayerCartView = configuration.uiConfig.usePlayerCartView
         usePlayerProductView = configuration.uiConfig.usePlayerProductView
         productPlayButton = configuration.uiConfig.productPlayButton == .visible
+        ignoreSafeAreas = configuration.uiConfig.ignoreSystemInsets
     }
     
     /**
@@ -152,6 +154,7 @@ private extension DemoSettings {
         addListener(value: $usePlayerCartView, at: \.uiConfig.usePlayerCartView)
         addListener(value: $usePlayerProductView, at: \.uiConfig.usePlayerProductView)
         addListener(value: $productPlayButton, at: \.uiConfig.productPlayButton)
+        addListener(value: $ignoreSafeAreas, at: \.uiConfig.ignoreSystemInsets)
     }
 
     /**
