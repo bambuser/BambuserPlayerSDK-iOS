@@ -37,7 +37,12 @@ After installing the SDK, you must import `BambuserPlayerSDK` in every file wher
 
 ### CocoaPods
 
-This SDK does not support CocoaPods.
+Add `BambuserPlayerSDK` to **`Podfile`**
+```ruby
+target 'MyApp' do
+  pod 'BambuserPlayerSDK', '~> 1.5.2'
+end
+```
 
 ### Carthages
 

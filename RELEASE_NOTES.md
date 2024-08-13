@@ -1,5 +1,9 @@
 # Release Notes
 
+# 1.5.2
+
+* Add Cocoapods support
+
 # 1.5.1
 ### Improvements:
 * Resolved issues with dismissing the player view when Picture-in-Picture (PiP) mode is enabled.
