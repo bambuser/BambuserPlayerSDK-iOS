@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.platform         = :ios, '14.0'
   s.swift_version    = '5.9'
 
-  s.dependency 'Firebase/Firestore', '10.18.0'
-  s.dependency 'Firebase/Auth', '10.18.0'
+  s.dependency 'Firebase/Firestore', '~> 10.18'
+  s.dependency 'Firebase/Auth', '~> 10.18'
 
   s.prepare_command = <<-CMD
   git clone https://github.com/bambuser/BambuserPlayerSDK-iOS ResourcesRepo
