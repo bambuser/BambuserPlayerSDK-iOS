@@ -1,5 +1,9 @@
 # Release Notes
 
+# 1.5.4
+### Improvements:
+* **Stability & Performance**: General stability and performance improvements.
+
 # 1.5.3
 ### Improvements:
 * **UI Enhancements**: Resolved UI issues in the Player view for a smoother user experience.

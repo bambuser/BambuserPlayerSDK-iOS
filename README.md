@@ -40,7 +40,7 @@ After installing the SDK, you must import `BambuserPlayerSDK` in every file wher
 Add `BambuserPlayerSDK` to **`Podfile`**
 ```ruby
 target 'MyApp' do
-  pod 'BambuserPlayerSDK', '~> 1.5.3'
+  pod 'BambuserPlayerSDK', '~> 1.5.4'
 end
 ```
 

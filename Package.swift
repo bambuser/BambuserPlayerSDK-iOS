@@ -22,8 +22,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "BambuserPlayerSDK",
-            url: "https://cdn.liveshopping.bambuser.com/public/download/BambuserPlayerSDK-1.5.3-release.xcframework.zip",
-            checksum: "61140519547e7967d4fbd6c6c61cec64adc4196ddb439f293117a00a5a96090d"
+            path: "Sources/BambuserPlayerSDK.xcframework"
         ),
         .target(
             name: "BambuserPlayerBundle",
