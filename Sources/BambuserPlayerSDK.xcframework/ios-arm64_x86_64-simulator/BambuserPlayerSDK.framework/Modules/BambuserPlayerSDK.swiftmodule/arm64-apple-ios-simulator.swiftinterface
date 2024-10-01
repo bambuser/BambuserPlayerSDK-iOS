@@ -185,13 +185,15 @@ public actor CalendarEvent {
 #endif
 public protocol CalendarProtocol {
 }
-public struct ColorVariant : Swift.Equatable {
+public struct ColorVariant : Swift.Equatable, Swift.Codable {
   public var id: Swift.String
   public var name: Swift.String
   public var imageUrls: [Foundation.URL]
   public var sizes: [BambuserPlayerSDK.SizeVariant]
   public init(id: Swift.String, name: Swift.String, color: UIKit.UIColor?, imageUrls: [Foundation.URL], sizes: [BambuserPlayerSDK.SizeVariant])
   public init(id: Swift.String, name: Swift.String, colorHex: Swift.String, imageUrls: [Foundation.URL], sizes: [BambuserPlayerSDK.SizeVariant])
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
   public static func == (a: BambuserPlayerSDK.ColorVariant, b: BambuserPlayerSDK.ColorVariant) -> Swift.Bool
 }
 extension EventKit.EKCalendar : BambuserPlayerSDK.CalendarProtocol {
@@ -682,7 +684,7 @@ extension BambuserPlayerSDK.PlayerUIConfiguration {
   public static func == (lhs: BambuserPlayerSDK.PlayerUIConfiguration, rhs: BambuserPlayerSDK.PlayerUIConfiguration) -> Swift.Bool
 }
 public struct Product : Swift.Codable {
-  public struct Base : BambuserPlayerSDK.ProductProtocol, Swift.Codable, Swift.Identifiable, Swift.Equatable {
+  public struct Base : BambuserPlayerSDK.ProductProtocol, Swift.Identifiable, Swift.Equatable {
     public let id: Swift.String
     public let title: Swift.String?
     public let brand: Swift.String?
@@ -735,6 +737,8 @@ public struct Product : Swift.Codable {
       get
     }
     public init(id: Swift.String, name: Swift.String, brand: Swift.String, shortDescription: Swift.String, description: Swift.String, price: Foundation.Decimal, originalPrice: Foundation.Decimal?, currency: Swift.String, colors: [BambuserPlayerSDK.ColorVariant])
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
@@ -743,11 +747,13 @@ extension BambuserPlayerSDK.Product.Hydrated : Swift.Equatable {
   public static func == (lhs: BambuserPlayerSDK.Product.Hydrated, rhs: BambuserPlayerSDK.Product.Hydrated) -> Swift.Bool
 }
 extension BambuserPlayerSDK.Product {
-  public struct Request {
+  public struct Request : Swift.Codable {
     public let id: Swift.String
     public let productReference: Swift.String
     public let publicUrl: Swift.String
     public init(id: Swift.String, productReference: Swift.String, publicUrl: Swift.String)
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
 public protocol PlayerProductDataSource : AnyObject {
@@ -755,7 +761,7 @@ public protocol PlayerProductDataSource : AnyObject {
   func productHydration(for product: BambuserPlayerSDK.Product.Request) async throws -> BambuserPlayerSDK.Product.Hydrated?
   #endif
 }
-public protocol ProductProtocol {
+public protocol ProductProtocol : Swift.Decodable, Swift.Encodable {
   var id: Swift.String { get }
   var name: Swift.String { get }
   var brandLabel: Swift.String? { get }
@@ -805,9 +811,11 @@ extension BambuserPlayerSDK.ShowStatus {
     get
   }
 }
-public struct SizeVariant : Swift.Equatable {
+public struct SizeVariant : Swift.Equatable, Swift.Codable {
   public init(id: Swift.String, name: Swift.String, quantityInStock: Swift.Int, currencyCode: Swift.String, currentPrice: Foundation.Decimal, originalPrice: Foundation.Decimal? = nil)
   public static func == (a: BambuserPlayerSDK.SizeVariant, b: BambuserPlayerSDK.SizeVariant) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 extension UIKit.UIFont.Weight : Swift.Decodable {
   public init(from decoder: any Swift.Decoder) throws

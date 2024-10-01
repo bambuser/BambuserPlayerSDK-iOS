@@ -5,8 +5,8 @@
 //  Copyright © 2021 Bambuser AB. All rights reserved.
 //
 
-import SwiftUI
 import BambuserPlayerSDK
+import SwiftUI
 
 /**
  This screen is responsible for creating a player view, with
@@ -23,24 +23,24 @@ struct PlayerScreen: View {
         self.showCloseButton = showCloseButton
         self.openPdpInNavigationStack = openPdpInNavigationStack
     }
-    
+
     let showCloseButton: Bool
     let openPdpInNavigationStack: Bool
-    
+
     @StateObject private var alert = AlertContext()
     @StateObject private var sheet = SheetContext()
     @State private var tracking: BambuserConversionTracking?
-    
+
     @State var isPipActive = false
     @State var isShowPlaying = true
-    
+
     @EnvironmentObject private var settings: DemoSettings
-    
+
     @Environment(\.presentationMode) private var presentationMode
-    
+
     @State private var isPdpOpened = false
     @State private var pdpUrl: URL?
-    
+
     var body: some View {
         VStack(spacing: 5) {
             player
@@ -69,7 +69,7 @@ struct PlayerScreen: View {
             CartView()
         }
     }
-    
+
     var pdpOverlay: some View {
         NavigationLink(
             isActive: $isPdpOpened,
@@ -88,11 +88,9 @@ struct PlayerScreen: View {
     }
 }
 
-
 // MARK: - View logic
 
 private extension PlayerScreen {
-    
     struct CartView: View {
         var body: some View {
             VStack {
@@ -109,27 +107,29 @@ private extension PlayerScreen {
         PlayerMenu(
             isPipActive: .init(
                 get: { isPipActive },
-                set: { _ in settings.playerContext.sendEvent(.togglePiP) }),
+                set: { _ in settings.playerContext.sendEvent(.togglePiP) }
+            ),
             isShowPlaying: $isShowPlaying,
-            showCloseButton: showCloseButton)
-            .asOverlay()
-            .padding(5)
-            .environmentObject(settings)
+            showCloseButton: showCloseButton
+        )
+        .asOverlay()
+        .padding(5)
+        .environmentObject(settings)
     }
-    
+
     var player: some View {
         playerView
             .background(BambuserLogoBackground())
             .cornerRadius(7)
             .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
     }
-    
+
     var playerView: some View {
         BambuserPlayerView(
             showId: settings.showId,
             environment: settings.environment,
             config: settings.playerConfiguration,
-            context: settings.playerContext, 
+            context: settings.playerContext,
             playerProductDataSource: settings.cartService,
             playerCartDataSource: settings.cartService,
             playerCartDelegate: settings.cartService,
@@ -138,11 +138,9 @@ private extension PlayerScreen {
     }
 }
 
-
 // MARK: - Internal Functionality
 
 extension PlayerScreen {
-
     func handlePlayerEvent(event: BambuserPlayerEvent) {
         switch event {
         case let .playerFailed(error): handlePlayerError(error)
@@ -167,7 +165,7 @@ extension PlayerScreen {
         default: print("Unhandled event: \(event)")
         }
     }
-    
+
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
@@ -209,7 +207,7 @@ extension PlayerScreen {
             do {
                 try await event.save()
                 let date = await event.startDate
-                
+
                 let successAlert = Alert(
                     title: Text("Success"),
                     message: Text("Event was added to calendar at \(date).")
@@ -224,7 +222,7 @@ extension PlayerScreen {
             }
         }
     }
-        
+
     func openProductDetails(_ product: ProductProtocol) {
         guard let url = product.base?.url else {
             return
@@ -242,7 +240,7 @@ extension PlayerScreen {
             currency: "USD" // the currency used for the order (ISO 4217)
         )
         tracking?.collect(event)
-        
+
         if openPdpInNavigationStack {
             pdpUrl = url
             isPdpOpened = true
@@ -253,23 +251,23 @@ extension PlayerScreen {
         }
         sheet.present(webView)
     }
-    
+
     func onPdpClosed() {
         if settings.isPiPEnabled {
             settings.playerContext.sendEvent(.exitPiP)
         }
     }
-    
+
     func handlePlayerError(_ error: BambuserPlayerSDKError) {
         var errorText = "Unknown error"
         switch error {
         case .showInitialization:
             errorText = "Can't open the show. Please check your 'Show Id' or 'Environment'."
-        case .playerInitialization(let error):
+        case let .playerInitialization(error):
             errorText = error?.localizedDescription ?? "-"
         case .openedUrlIsInvalid:
             errorText = error.localizedDescription
-        case .unknown(let error):
+        case let .unknown(error):
             errorText = error?.localizedDescription ?? "-"
         }
 
@@ -280,11 +278,9 @@ extension PlayerScreen {
     }
 }
 
-
 // MARK: - Private Functionality
 
 private extension PlayerScreen {
-    
     func alert(
         title: String,
         message: String,
@@ -293,7 +289,7 @@ private extension PlayerScreen {
     ) {
         let button: Alert.Button? = buttonText != nil ?
             .cancel(Text(buttonText!), action: buttonAction) : nil
-        
+
         alert.present(Alert(
             title: Text(title),
             message: Text(message),
@@ -302,9 +298,7 @@ private extension PlayerScreen {
     }
 }
 
-
 struct PlayerScreen_Previews: PreviewProvider {
-    
     static var previews: some View {
         PlayerScreen(
             showCloseButton: false,

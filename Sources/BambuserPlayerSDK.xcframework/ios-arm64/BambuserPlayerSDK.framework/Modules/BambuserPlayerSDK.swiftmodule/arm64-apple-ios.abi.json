@@ -5777,8 +5777,8 @@
       },
       {
         "kind": "Import",
-        "name": "UIKit",
-        "printedName": "UIKit",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
         "declKind": "Import",
         "moduleName": "BambuserPlayerSDK",
         "declAttributes": [
@@ -5787,8 +5787,8 @@
       },
       {
         "kind": "Import",
-        "name": "SwiftUI",
-        "printedName": "SwiftUI",
+        "name": "UIKit",
+        "printedName": "UIKit",
         "declKind": "Import",
         "moduleName": "BambuserPlayerSDK"
       },
@@ -6335,6 +6335,61 @@
           },
           {
             "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17BambuserPlayerSDK12ColorVariantV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s17BambuserPlayerSDK12ColorVariantV6encode2toys7Encoder_p_tKF",
+            "moduleName": "BambuserPlayerSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ColorVariant",
+                "printedName": "BambuserPlayerSDK.ColorVariant",
+                "usr": "s:17BambuserPlayerSDK12ColorVariantV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17BambuserPlayerSDK12ColorVariantV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s17BambuserPlayerSDK12ColorVariantV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "BambuserPlayerSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
             "children": [
@@ -6381,6 +6436,20 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
           }
         ]
       },
@@ -17778,8 +17847,8 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
+        "name": "FirebaseFirestore",
+        "printedName": "FirebaseFirestore",
         "declKind": "Import",
         "moduleName": "BambuserPlayerSDK",
         "declAttributes": [
@@ -17788,8 +17857,8 @@
       },
       {
         "kind": "Import",
-        "name": "FirebaseFirestore",
-        "printedName": "FirebaseFirestore",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "BambuserPlayerSDK"
       },
@@ -18509,31 +18578,6 @@
               },
               {
                 "kind": "Function",
-                "name": "encode",
-                "printedName": "encode(to:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Encoder",
-                    "printedName": "any Swift.Encoder",
-                    "usr": "s:s7EncoderP"
-                  }
-                ],
-                "declKind": "Func",
-                "usr": "s:17BambuserPlayerSDK7ProductV4BaseV6encode2toys7Encoder_p_tKF",
-                "mangledName": "$s17BambuserPlayerSDK7ProductV4BaseV6encode2toys7Encoder_p_tKF",
-                "moduleName": "BambuserPlayerSDK",
-                "implicit": true,
-                "throwing": true,
-                "funcSelfKind": "NonMutating"
-              },
-              {
-                "kind": "Function",
                 "name": "==",
                 "printedName": "==(_:_:)",
                 "children": [
@@ -18563,6 +18607,31 @@
                 "static": true,
                 "implicit": true,
                 "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "encode",
+                "printedName": "encode(to:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Encoder",
+                    "printedName": "any Swift.Encoder",
+                    "usr": "s:s7EncoderP"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17BambuserPlayerSDK7ProductV4BaseV6encode2toys7Encoder_p_tKF",
+                "mangledName": "$s17BambuserPlayerSDK7ProductV4BaseV6encode2toys7Encoder_p_tKF",
+                "moduleName": "BambuserPlayerSDK",
+                "implicit": true,
+                "throwing": true,
+                "funcSelfKind": "NonMutating"
               }
             ],
             "declKind": "Struct",
@@ -18579,20 +18648,6 @@
                 "printedName": "ProductProtocol",
                 "usr": "s:17BambuserPlayerSDK15ProductProtocolP",
                 "mangledName": "$s17BambuserPlayerSDK15ProductProtocolP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Decodable",
-                "printedName": "Decodable",
-                "usr": "s:Se",
-                "mangledName": "$sSe"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Encodable",
-                "printedName": "Encodable",
-                "usr": "s:SE",
-                "mangledName": "$sSE"
               },
               {
                 "kind": "Conformance",
@@ -18622,6 +18677,20 @@
                 "printedName": "Equatable",
                 "usr": "s:SQ",
                 "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Decodable",
+                "printedName": "Decodable",
+                "usr": "s:Se",
+                "mangledName": "$sSe"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Encodable",
+                "printedName": "Encodable",
+                "usr": "s:SE",
+                "mangledName": "$sSE"
               }
             ]
           },
@@ -19328,6 +19397,57 @@
                 "init_kind": "Designated"
               },
               {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(from:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hydrated",
+                    "printedName": "BambuserPlayerSDK.Product.Hydrated",
+                    "usr": "s:17BambuserPlayerSDK7ProductV8HydratedV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Decoder",
+                    "printedName": "any Swift.Decoder",
+                    "usr": "s:s7DecoderP"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:17BambuserPlayerSDK7ProductV8HydratedV4fromAEs7Decoder_p_tKcfc",
+                "mangledName": "$s17BambuserPlayerSDK7ProductV8HydratedV4fromAEs7Decoder_p_tKcfc",
+                "moduleName": "BambuserPlayerSDK",
+                "implicit": true,
+                "throwing": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Function",
+                "name": "encode",
+                "printedName": "encode(to:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Encoder",
+                    "printedName": "any Swift.Encoder",
+                    "usr": "s:s7EncoderP"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17BambuserPlayerSDK7ProductV8HydratedV6encode2toys7Encoder_p_tKF",
+                "mangledName": "$s17BambuserPlayerSDK7ProductV8HydratedV6encode2toys7Encoder_p_tKF",
+                "moduleName": "BambuserPlayerSDK",
+                "implicit": true,
+                "throwing": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
                 "kind": "Function",
                 "name": "==",
                 "printedName": "==(_:_:)",
@@ -19377,6 +19497,20 @@
                 "printedName": "ProductProtocol",
                 "usr": "s:17BambuserPlayerSDK15ProductProtocolP",
                 "mangledName": "$s17BambuserPlayerSDK15ProductProtocolP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Decodable",
+                "printedName": "Decodable",
+                "usr": "s:Se",
+                "mangledName": "$sSe"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Encodable",
+                "printedName": "Encodable",
+                "usr": "s:SE",
+                "mangledName": "$sSE"
               },
               {
                 "kind": "Conformance",
@@ -19617,6 +19751,57 @@
                   "RawDocComment"
                 ],
                 "init_kind": "Designated"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(from:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Request",
+                    "printedName": "BambuserPlayerSDK.Product.Request",
+                    "usr": "s:17BambuserPlayerSDK7ProductV7RequestV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Decoder",
+                    "printedName": "any Swift.Decoder",
+                    "usr": "s:s7DecoderP"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:17BambuserPlayerSDK7ProductV7RequestV4fromAEs7Decoder_p_tKcfc",
+                "mangledName": "$s17BambuserPlayerSDK7ProductV7RequestV4fromAEs7Decoder_p_tKcfc",
+                "moduleName": "BambuserPlayerSDK",
+                "implicit": true,
+                "throwing": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Function",
+                "name": "encode",
+                "printedName": "encode(to:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Encoder",
+                    "printedName": "any Swift.Encoder",
+                    "usr": "s:s7EncoderP"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17BambuserPlayerSDK7ProductV7RequestV6encode2toys7Encoder_p_tKF",
+                "mangledName": "$s17BambuserPlayerSDK7ProductV7RequestV6encode2toys7Encoder_p_tKF",
+                "moduleName": "BambuserPlayerSDK",
+                "implicit": true,
+                "throwing": true,
+                "funcSelfKind": "NonMutating"
               }
             ],
             "declKind": "Struct",
@@ -19626,7 +19811,23 @@
             "declAttributes": [
               "RawDocComment"
             ],
-            "isFromExtension": true
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Decodable",
+                "printedName": "Decodable",
+                "usr": "s:Se",
+                "mangledName": "$sSe"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Encodable",
+                "printedName": "Encodable",
+                "usr": "s:SE",
+                "mangledName": "$sSE"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -20307,8 +20508,26 @@
         "usr": "s:17BambuserPlayerSDK15ProductProtocolP",
         "mangledName": "$s17BambuserPlayerSDK15ProductProtocolP",
         "moduleName": "BambuserPlayerSDK",
+        "genericSig": "<τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
+        "sugared_genericSig": "<Self : Swift.Decodable, Self : Swift.Encodable>",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          }
         ]
       },
       {
@@ -21550,6 +21769,32 @@
             "init_kind": "Designated"
           },
           {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SizeVariant",
+                "printedName": "BambuserPlayerSDK.SizeVariant",
+                "usr": "s:17BambuserPlayerSDK11SizeVariantV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17BambuserPlayerSDK11SizeVariantV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s17BambuserPlayerSDK11SizeVariantV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "BambuserPlayerSDK",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -21580,6 +21825,31 @@
             "static": true,
             "implicit": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17BambuserPlayerSDK11SizeVariantV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s17BambuserPlayerSDK11SizeVariantV6encode2toys7Encoder_p_tKF",
+            "moduleName": "BambuserPlayerSDK",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Struct",
@@ -21597,6 +21867,20 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
           }
         ]
       },
@@ -25696,70 +25980,70 @@
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5672,
+      "offset": 5669,
       "length": 17,
       "value": "\"Activity Hoodie\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5706,
+      "offset": 5703,
       "length": 7,
       "value": "\"Brand\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5741,
+      "offset": 5738,
       "length": 6,
       "value": "\"1737\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5768,
+      "offset": 5765,
       "length": 58,
       "value": "\"https:\/\/demo.bambuser.shop\/product\/1737\/bambuser-hoodie\/\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5847,
+      "offset": 5844,
       "length": 71,
       "value": "\"https:\/\/demo.bambuser.shop\/wp-content\/uploads\/2023\/06\/Fashion_7.1.png\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6021,
+      "offset": 6023,
       "length": 17,
       "value": "\"Activity Hoodie\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6055,
+      "offset": 6057,
       "length": 7,
       "value": "\"Brand\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6090,
+      "offset": 6092,
       "length": 6,
       "value": "\"1737\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6117,
+      "offset": 6119,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/gitlab\/builds\/M1xBhyqR\/0\/livecommerce\/livevideoshoppingplayer-sdk\/livevideoshoppingplayer-sdk-ios\/Files\/Sources\/Services\/Models\/Product\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6140,
+      "offset": 6142,
       "length": 71,
       "value": "\"https:\/\/demo.bambuser.shop\/wp-content\/uploads\/2023\/06\/Fashion_7.1.png\""
     },

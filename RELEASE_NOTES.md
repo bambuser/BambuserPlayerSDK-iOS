@@ -1,46 +1,73 @@
 # Release Notes
 
+# 2.0.0
+
+### 💡 Behavior changes
+
+* BambuserPlayerSDK now requires Firebase SDK v.11 and above
+
+### Improvements
+
+* Improve `Product` models and data structures
+* Bug fixes and stability improvements
+
 # 1.5.4
-### Improvements:
+
+### Improvements
+
 * **Stability & Performance**: General stability and performance improvements.
 
 # 1.5.3
-### Improvements:
+
+### Improvements
+
 * **UI Enhancements**: Resolved UI issues in the Player view for a smoother user experience.
 * **Stability & Performance**: General stability and performance improvements.
 
 # 1.5.2
 
+### ✨ New Features
+
 * Add Cocoapods support
 
 # 1.5.1
-### Improvements:
+
+### Improvements
+
 * Resolved issues with dismissing the player view when Picture-in-Picture (PiP) mode is enabled.
 * Addressed the problem with the "ignore safe area" option in the UI configuration.
 
 # 1.5.0
-### ✨ New Features:
+
+### ✨ New Features
+
 * **Custom Views**: Users can now utilize custom `Cart` and `Product Detail` views.
 
-### Improvements:
+### Improvements
+
 * **UI Enhancements**: Resolved UI issues in the Player view for a smoother user experience.
 * **Stability & Performance**: General stability and performance improvements.
 * **Bug Fixes**: Various bug fixes to enhance overall functionality.
 
-
 # 1.4.1
+
 ### 💡 Behavior changes
+
 * Add Firebase as dynamic dependency - Check README for more information
 
 ### Improvements
+
 * Add product listing
 * Internal code cleanup.
 
 # 1.4.0
+
 ### 💡 Behavior changes
+
 * Remove Firebase SDK dependency
 
 ### Improvements
+
 * Fix the crash when player was initialized with a non existing show id
 * Fix spacing issue in the Player view
 * General stability improvements
@@ -48,27 +75,33 @@
 * Add 'Add to Cart' Tracking event
 
 ## 1.3.0
-### ✨ New features:
+
+### ✨ New features
+
 * Cart integration
 * Full products detail page
 
 ### Improvements
+
 * `CalendarEvent` now supports async/await apis
 * Bug fixes and general improvements
 
 ## 1.2.2
 
 🐛 Fix some bugs:
+
 * Remove direct usage of deprecated Firebase module (FirebaseFirestoreSwift).
 
 ## 1.2.1
 
-### ✨ New features:
+### ✨ New features
+
 * Display or hide the number of viewers on player
 
 ## 1.2.0
 
-### ✨ New features:
+### ✨ New features
+
 * Customised theming
 * Localization, support for multiple-languages
 * Conversion tracking
@@ -80,6 +113,7 @@ We have also squashed some bugs 🐛
 ## 1.1.0
 
 ### ✨ New features
+
 * Allows presentation of a product details page (PDP)
 * New UI-config variable `showPDPOnProductTap` used to choose if the new PDP view should be visible when tapping a product
 * Support for password protected shows
@@ -96,8 +130,8 @@ If you used the previous library (BambuserLiveVideoShoppingPlayer-iOS), expect a
 
 * The BambuserPlayerSDK is now completely rewritten in pure Swift with SwiftUI as UI-framework.
 * Player V2.0 design
-    * Includes infinite highlighted products timeline
-    * More modern design
+  * Includes infinite highlighted products timeline
+  * More modern design
 * PiP context handling is now done internally, so you only need to handle restoring functionality.
 * Possibility to hide even more of the UI through config
 
@@ -122,7 +156,6 @@ If you used the previous library (BambuserLiveVideoShoppingPlayer-iOS), expect a
 
 * Drop support for iOS12
 
-
 ## 0.9.0
 
 ### ✨ New features
@@ -135,15 +168,11 @@ If you used the previous library (BambuserLiveVideoShoppingPlayer-iOS), expect a
 * Removed `PlayerViewerInfo` option from `PlayerConfiguration`.
 * Removed `subscribeButton` option from `PlayerUIConfiguration`.
 
-
-
 ## 0.8.1
 
 ### ✨ New features
 
 * New event `openExternalUrl`- Emitted when user taps a link.
-
-
 
 ## 0.8
 
@@ -186,21 +215,15 @@ This new version also makes it possible to use the player in fullscreen edge-to-
 
 * The player can now be used in fullscreen.
 * The DocC documentation has more information.
-* More types implement `Codable` and `Equatable`.    
-
-
+* More types implement `Codable` and `Equatable`.
 
 ## 0.6.2
 
 This version adds missing required attributes to the CocoaPods specification file.
 
-
-
 ## 0.6.1
 
 This version works with Xcode 12.5.0 and newer.
-
-
 
 ## 0.6
 
@@ -210,7 +233,7 @@ Improved PiP restoration means that exiting PiP when the original screen has bee
 
 ### ✨ New features
 
-* More types implement `Equatable`.    
+* More types implement `Equatable`.
 * `PlayerConfiguration` has a new, static `standard` function that takes an event handler.
 * `PictureInPictureState` has a new `resetRestoreAction` function.
 
@@ -226,8 +249,6 @@ Improved PiP restoration means that exiting PiP when the original screen has bee
 * `AddToCalendarError.missingEventData` can no longer occur and has been removed.
 * `LiveVideoShoppingPlayerContext` `interface` is renamed to `player`.
 * `LiveVideoShoppingPlayerInterface` has been replaced with just using `LiveVideoShoppingPlayerView`.
-
-
 
 ## 0.5
 
@@ -266,7 +287,7 @@ This version also makes many nested player configuration types non-nested.
 * `PlayerConfiguration.StreamerInfo` has been renamed to `PlayerStreamerInfo`.
 * `PlayerConfiguration.UIConfiguration` has been renamed to `PlayerUIConfiguration`.
 * `PlayerConfiguration.UIState` has been renamed to `PlayerOverlayVisiblity`.
-* `PlayerUIPresenter` is deprecated and will be removed in `0.6`. 
+* `PlayerUIPresenter` is deprecated and will be removed in `0.6`.
 
 ### 💥 Breaking changes
 
@@ -276,8 +297,6 @@ This version also makes many nested player configuration types non-nested.
 * `PlayerButtonConfiguration.DismissConfig` was not used and has been removed.
 * `PlayerConfiguration` no longer has a `buttons` configuration option.
 
-
-
 ## 0.4
 
 This version adds native picture-in-picture support.
@@ -285,7 +304,7 @@ This version adds native picture-in-picture support.
 ### ✨ New features
 
 * More structs and enums now implement `Codable` and `CaseIterable`.
-* `LiveVideoShoppingPlayerInterface` now implements `PictureInPictureController`. 
+* `LiveVideoShoppingPlayerInterface` now implements `PictureInPictureController`.
 * `PictureInPictureController` is a new protocol that describes how to handle PiP.
 * `PlayerConfiguration.ButtonConfiguration` has a new `.standard` builder.
 * `PlayerConfiguration.LocaleInfo` has a new `.standard` builder.
@@ -305,7 +324,6 @@ This version adds native picture-in-picture support.
 * `PlayerTheme.name` has been renamed to `PlayerEngine.client`.
 * `ShowStatus` is a new enum that can be used to identify the current state of a show.
 
-
 ## 0.3
 
 ### ✨ New features
@@ -323,8 +341,6 @@ This version adds native picture-in-picture support.
 * `LiveVideoShoppingPlayerInterface` `callFunction` has been removed. Use the new functions instead.
 * `PlayerEvent.playerClosed` has been renamed to `playerDidClose`
 * `PlayerEvent.playerLoaded` has been renamed to `playerDidLoad`
-
-
 
 ## 0.2
 
@@ -358,8 +374,6 @@ This version adds native picture-in-picture support.
 
 * We have fixed the bug where tapping a loading player removed it.
 
-
-
 ## 0.1.1
 
 ### ✨ New features
@@ -371,8 +385,6 @@ This version adds native picture-in-picture support.
 ### 💡 Behavior changes
 
 * The top-right close button in the player is now hidden by default.
-
-
 
 ## 0.1
 
