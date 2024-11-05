@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,6 @@
 		2766D3C58C6B697CFE73E9CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB45DA3A046770C2E779E5D /* LaunchScreen.storyboard */; };
 		28B44A59B20E1C8B83F7B0B8 /* DemoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5823EA64078CD8F6C0E78ED /* DemoSettings.swift */; };
 		35583643DC9D6A4F24E9A687 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD76A9E88AFBC5F0A2F2D0A2 /* CartItemCell.swift */; };
-		36A6DAA92CAC2E1600DB0A58 /* BambuserPlayerSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 36A6DAA82CAC2E1600DB0A58 /* BambuserPlayerSDK */; };
 		36DEBB54CD5F19905AED02E7 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BE7B7D97E9C1CCAA8104 /* PlayerViewController.swift */; };
 		3D3B8763A13F75D67D11C226 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588C0DD62E13D59FD442CA0 /* CartViewController.swift */; };
 		58B2C4AA1FD57B0D69720362 /* HomeDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5578CE9E13FA18BA73A595EA /* HomeDatePickerCell.swift */; };
@@ -34,6 +33,7 @@
 		B6BC11B10DA546E16EA6CB6A /* UIImage+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CB33484A07A744965D06E5 /* UIImage+Demo.swift */; };
 		C5ED39F059C654F945E32F43 /* SelectableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CAD322CBA7DD2756FF82D7 /* SelectableEnvironment.swift */; };
 		CBB89557833FC86E3181174B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AA20B3143EF20724A825AD /* AppDelegate.swift */; };
+		CDB261D43608B54353D1D344 /* BambuserPlayerSDK in Frameworks */ = {isa = PBXBuildFile; productRef = A21861F47C61C672E37E81C6 /* BambuserPlayerSDK */; };
 		D0B7E99BE27CE078705818B3 /* HostInAppCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82F3E7D8D9397F3E85F451 /* HostInAppCartViewController.swift */; };
 		E5373C8E896D7C15810DED97 /* DemoSettings+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F88DF4CD9F7DB150C66B9B /* DemoSettings+Private.swift */; };
 		E6C9711C937A4966C6FB4D1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C8AE1C039E38A15DDAB812 /* SceneDelegate.swift */; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36A6DAA92CAC2E1600DB0A58 /* BambuserPlayerSDK in Frameworks */,
+				CDB261D43608B54353D1D344 /* BambuserPlayerSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +208,7 @@
 			);
 			name = "Demo-UIKit";
 			packageProductDependencies = (
-				36A6DAA82CAC2E1600DB0A58 /* BambuserPlayerSDK */,
+				A21861F47C61C672E37E81C6 /* BambuserPlayerSDK */,
 			);
 			productName = "Demo-UIKit";
 			productReference = FF9F70EF4CD66047A26D01C7 /* Demo-UIKit.app */;
@@ -238,7 +238,7 @@
 			);
 			mainGroup = 7DD9B7EBF96BAD352EAB73DE;
 			packageReferences = (
-				36A6DAA72CAC2E1600DB0A58 /* XCRemoteSwiftPackageReference "bambuserplayersdk-rc-release" */,
+				13453BE44F095430986DD2E1 /* XCRemoteSwiftPackageReference "BambuserPlayerSDK-iOS" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -492,20 +492,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		36A6DAA72CAC2E1600DB0A58 /* XCRemoteSwiftPackageReference "bambuserplayersdk-rc-release" */ = {
+		13453BE44F095430986DD2E1 /* XCRemoteSwiftPackageReference "BambuserPlayerSDK-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://gitlab.bambuser.com/saeid/bambuserplayersdk-rc-release";
+			repositoryURL = "https://github.com/bambuser/BambuserPlayerSDK-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 1.5.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		36A6DAA82CAC2E1600DB0A58 /* BambuserPlayerSDK */ = {
+		A21861F47C61C672E37E81C6 /* BambuserPlayerSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 36A6DAA72CAC2E1600DB0A58 /* XCRemoteSwiftPackageReference "bambuserplayersdk-rc-release" */;
+			package = 13453BE44F095430986DD2E1 /* XCRemoteSwiftPackageReference "BambuserPlayerSDK-iOS" */;
 			productName = BambuserPlayerSDK;
 		};
 /* End XCSwiftPackageProductDependency section */

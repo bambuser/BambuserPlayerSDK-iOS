@@ -1,5 +1,12 @@
 # Release Notes
 
+# 2.0.1
+
+### Improvements
+
+* Fix issue with ignoring safe areas
+* Fix PDP view if product hydration was missing
+
 # 2.0.0
 
 ### 💡 Behavior changes
